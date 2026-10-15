@@ -1,0 +1,1556 @@
+ THE THEORY OF PLAFALES: P VS NP PROBLEM SOLUTION
+
+
+                                     DMYTRO TOPCHYI
+
+                    In memory of Tolik Bendeliani and Victor Kovalyov
+
+
+        Abstract. In this paper, we consider the properties of the following ob-
+        jects: plafal and geo-space (a general overview). As an application of the
+        created theory, the proof of the equality of complexity classes P and NP will
+        be given. The geo-plafal is a kernel (computational template) of the proof;
+        Khomchenko’ scientific school (the constructive theory of serendipity approxi-
+        mations), Stepanets’ scientific school and the Bogolyubov principle of the decay
+        of correlations for an infinite three-dimensional systems is a shell of the proof.
+        2020 MSC. Primary: 00-02, 00A05, 68Q15.
+        Secondary: 00A71, 08-00, 18A05, 18A10, 37-00, 54-00, 65D99, 65Y20, 68Q25.
+
+
+
+
+                                     1. introduction
+   The first edition of [1] is published in March 2011. The publication’s goal is
+the creation of a new theory in mathematics, where the central object is a plafal1.
+The second edition of [2] is published in February 2013. After the report at the
+42nd Polish Conference on Mathematics Applications [3], it is necessary to create
+applications based on the theory of plafales. Here we will provide the R·D process.
+   Finite element method. There are created mathematical models of serendi-
+pity finite elements: a new approach to construction basis and field functions. A
+quadruple role of the basis functions of serendipity finite elements is shown [4], [5].
+   IT (finite element method as an algorithmic support). Due to solving the non-
+standard Dirichlet boundary value problem [4], using the components of the theo-
+ry of plafales (to obtain the surface of the temperature field in three-dimensional
+space), there is developed a software for testing non-stationary temperature fields [6].
+   Cryptography. In September 2014 there is created a symmetric-key algorithm
+“ECLECTIC-DT-1” [7]. Algorithm’s characteristics: block length is 128 bits, key
+length is 256 bits, 14 rounds. Let us show the algorithm’s indicators. Upper
+bounds of practical security: EDP ≤ 2−714 (against differential cryptanalysis [8]),
+ELP ≤ 2−714 (against linear cryptanalysis [9]). Upper bounds of provable security
+(for the first four rounds): d= ≤ 2−96 and l= ≤ 2−96 . In December 2018 there
+is created a symmetric-key algorithm “STEEL” [10]. Algorithm’s characteristics:
+block length is 128 bits, key length is 256 bits, 14 rounds. Algorithm’s indicators:
+EDP ≤ 2−595 , ELP ≤ 2−595 , d= ≤ 2−80 and l= ≤ 2−80 .
+   Note. Editions [1] and [2] are the bases of the theory of plafales. The paper
+presents the “linear passage”: all objects are introduced to prove P = NP as soon
+as possible. The theory has to be taken into consideration starting from this paper.
+
+  Date: 11 September 2026.
+  Key words and phrases. plafal, plafale, the theory of plafales, P vs NP problem.
+  1
+    The singular form is a plafal or a plafale. Pl: plafales.
+                                                1
+2                                       DMYTRO TOPCHYI
+
+
+                                 2. concept of the plafal
+    We will use a framework “Standard By Default” [11]. A mathematical entity is
+described as U-standard according to the following rules: a set, monoid, topological
+space, poset, family, graph, diagram, cardinal, ordinal etc. is standard when it is
+small; a category, groupoid, multicategory, locally ordered category etc. is standard
+when it is light; for 2 ≤ n < ∞, an n-category is standard when it is n-moderate.
+A mathematical entity is described as U ∗ -standard according to the following rules:
+an ∞-groupoid is standard when it is small; an (∞, 1)-category is standard when
+it is light; for 2 ≤ n < ∞, an (∞, n)-category is standard when it is n-moderate. A
+function, relation, subset, functor, natural transformation etc. is always standard.
+Definition 2.1. A plafal is a tuple hG, P F, Pi and is denoted by P F or P Fji , where
+G = G(V, E) is a simple graph2, i = |V | > 0, j = |E| > 0, P F = hS(V), e S(E)iie is
+a collection of arbitrary U-standard, P = hS(v), S(e)i is a collection of correspon-
+                                         v∈S(v)
+dences such that ∀v ∈ V we have v −−−−−→ V        e = U-standard, V  e ∈ S(V),
+                                                                             e here
+S(V) is a collection of arbitrary U-standard that correspond to the vertices; ∀e ∈ E
+   e
+            e∈S(e)
+we have e −−−−→ Ee = U-standard, Ee ∈ S(E),    e here S(E)e is a collection of arbitrary
+U-standard that correspond to the edges. Generally, hv, V,    e vi is called a vertex of
+the plafal and is denoted by V; he, E, ei is called an edge of the plafal and is denoted
+                                      e
+by E. By V (P F ) we denote a collection of vertices, by E(P F ) we denote a collection
+of edges. Between E and V1 , V2 , which are connected by E, there is not necessarily a
+logical relation. If ∀V ∈ V (P F ) : V = hv, v, vi and ∀E ∈ E(P F ) : E = he, e, ei, then
+we say that P F = G is a trivial plafal and write ∗ P F . So, P F = hV (P F ), E(P F )i.
+   For example, the representation of G(V, E) on a vector space is a type of P F [12].
+   Remark 1. |S(V)| e ≤ i and |S(E)| e ≤ j. We can operate with S(V)     e and S(E) e
+that contain the same entities. Agreement. We claim that G(V, E) = G(P F ),
+hG, P F, Pi = hG, P F i, hv, V,
+                               e vi = hv, Vi,
+                                          e he, E,
+                                                 e ei = he, Ei.
+                                                            e Let us introduce the
+following notation. S(P F ) is a collection of plafales. S(G(P F )) is a collection of
+simple graphs as supports of S(P F ).
+Claim 2.2. V, E are categories.
+Proof. Let us show for V. idv ◦idv = idv , idVe ◦idVe = idVe , v◦idv = v, idVe ◦v = v. 
+    Let us provide a definition of the plafal within the framework of category theory.
+Definition 2.3. A plafal is a tuple hASC, Disc, Fi, where ASC is a 1-dimensional
+abstract simplicial complex (considering as a category), here Disc is a discrete
+category of arbitrary U-standard, F is functor between ASC and Disc such that
+the above correspondences (see definition 2.1) are performed and morphisms of
+simplices of ASC and identity morphisms of enteties of Disc are realized.
+Definition 2.4. Labeled plafal is a type of the plafal, where all or some of vertices
+                                                 π1
+and/or edges are enumerated. We have V • (P F ) −→   {1, i}, here V • (P F ) ⊆ V (P F )
+                              π2
+      •              •
+and |V (P F )| = k; E (P F ) −→ {1, j}, here E (P F ) ⊆ E(P F ) and |E • (P F )| = l;
+                                               •
+
+
+    2G is a 1-dimensional abstract simplicial complex that does not contain an isolated vertex.
+Generally, v is a vertex of G(V, E), e is an edge of G(V, E). V is a collection of vertices, E is a col-
+lection of edges. For G we have the following: a vertex is a singleton; an edge is an unordered pair.
+                                                                                                   3
+
+
+π1 , π2 are substitutions3. By P Fjilk we denote a labeled plafal, k is a quantity of
+enumerated vertices; l is a quantity of enumerated edges. In the case of k = 0, the
+plafal does not contain enumerated vertices. In the case of l = 0, the plafal does
+not contain enumerated edges. In the case of k = l = 0, we claim that P Fji00 = P Fji .
+By τ V we denote a vertex with assigned number (1 ≤ τ ≤ i), by ς E we denote an
+edge with assigned number (1 ≤ ς ≤ j).
+   Notice that a graph labeling is a type of P F such that V,e Ee ∈ {v, e, {labeling}}.
+We consider a labeled trivial plafal as a graph labeling. V and ς E do not necessarily
+                                                         τ
+
+coincide with a number of a graph labeling. Evidently, we can use the following
+configurations: Ve = h{labeling}, U-standardi and Ee = h{labeling}, U-standardi.
+   The illustrations of plafales and graphs are given for the reader’s perception.
+
+                                                   Multirel
+                                R
+                       1         2
+                                                                                               3
+                Set
+                                     43
+                                                            Q                               PF 3
+                              PF 4                                                      *
+                                      1
+                       3                               4
+
+
+         Figure 1. P F4413 . Vertices: V = hv, vi (for three vertices), the
+         category of small sets and small multirelations. Edges: the cate-
+         gory of sets, the set of real numbers, the set of rational numbers,
+         E = he, ei. Three vertices are enumerated, one edge is enumerated.
+              3
+         ∗ P F3 is a trivial plafal.
+
+
+
+
+   Let us give an example in cryptography [7], [10]. For a byte b7 . . . b0 we have the
+following configurations: ς E = he, {b8−ς }i and V = hv, vi.
+
+                                                           {b 7 }
+                                          {b 0 }             1            {b 6 }
+                                                   8                  2
+
+                                                                  8
+                                     {b 1 } 7              PF 808          3   {b 5 }
+
+                                                   6                  4
+                                          {b 2 }              5           {b 4 }
+                                                            {b 3 }
+         Figure 2. P F8880 . Eight edges are enumerated. The plafal does
+         not contain enumerated vertices.
+
+
+   Definition of an ∗-plafal can be formulated by analogy with the plafal, taking
+                                  v∈S(v)
+into account ∀v ∈ V we have v −−−−−→ V    e = U ∗ -standard and ∀e ∈ E we have
+  e∈S(e)        ∗
+e −−−−→ Ee = U -standard.
+   Remark 2. ∗-plafales and their properties will be the object of another paper.
+    3π is a bijection iff k = i; π is an injection iff k < i. π is a bijection iff l = j; π is an
+      1                           1                            2                           2
+injection iff l < j.
+4                                          DMYTRO TOPCHYI
+
+
+                    3. the category of plafales and operations
+                                                          Λ=hf,Θi
+Definition 3.1. A plafal morphism P F −−−−−→ P F 0 is a tuple of maps’s collec-
+tions such that
+            f
+            → G(P F 0 ), f is a graph morphism (an abstract simplicial map);
+(1) G(P F ) −
+          Θ=hΘ∗ ,Θ∗∗ i              Θ∗                  Θ∗∗
+(2) P F −−−−−−−−→ P F 0 : S(V) e −     e 0 ) and S(E)
+                                    −→ S(V           e −−→ S(Ee0 ).
+Note that (2) is performed in accordance with (1).
+    The example is given in figure 3.
+Claim 3.2. Plafales and plafal morphisms form the category Plafales, together with
+the componentwise compositions hf, Θi ◦ hf 0 , Θ0 i = hf ◦ f 0 , Θ ◦ Θ0 i and identities
+idP F = hidG(P F ) , idP F = hidS(V)      e ii. The proof is left to the reader.
+                                   e , idS(E)
+
+
+                                  v1                 v2                       f(v1 )
+                                4                              3
+                     (1)   G(PF )                         G(PF )
+                               5                              3
+
+                                  v3                 v4
+                                                              f(v2 )              f(v3 ) = f(v4 )
+
+                                                     U
+                                       C                               K
+                                                          G
+
+                                4                             g
+                     (2)     PF
+                               5                                              3
+                                                                           PF
+                            ~                                                3                 ~
+                            V=v                               H                               V=v
+                                               ~
+                                               V=v
+           Figure 3. Condition 1. The image of G(P F54 ) under the strict
+           homomorphism is G(P F33 ). Condition 2. U is a functor; g is a
+           homomorphism of groups.
+
+
+Definition 3.3. hb
+                 0G(P Fji ) = h∅, ∅i, P F = h∅, ∅ii is called an empty plafal and is
+denoted by P F emp
+                   , here b 0G(P F i ) is the empty graph4 (the initial object in the
+                                           j
+categories of simple graphs (SimpGph)).
+Claim 3.4. In Plafales, there’re no initial and terminal objects.
+Proof. Initial. Omitted. Terminal. In SimpGph, there’s no terminal object. 
+Definition 3.5. Q A product of two plafales   P F prod = P F × P F 0 is defined by the
+                                      0
+graph product      = G(P F ) × G(P F ) and the following condition holds:
+(i) ∀V
+     e prod
+            ∈ S(V
+                e prod
+                       ):Ve prod = V
+                                   e×Ve 0 and ∀Eeprod ∈ S(Eeprod ) : Eeprod = e.
+                                                Q
+Notice that (i) is realized in accordance with .
+Definition 3.6. A coproduct     of two plafales P F coprod = P F + P F 0 is defined by
+                          = G(P F ) + G(P F 0 ) and the following condition holds:
+                      `
+the graph coproduct
+(i) in the general case, P F + P F 0 is a coproduct of categories.
+                                                           `
+Let us remark that (i) is performed in accordance with .
+    4i = 0, j = 0 (see definition 2.1).
+                                                                                                 5
+
+
+Claim 3.7. In Plafales, the (co)-product of any two plafales does not always exist.
+Proof. It is sufficient to consider S(V)      e 0 ) as collections of objects of the
+                                      e and S(V
+category of fields.                                                               
+Corollary 3.8. Plafales is not a (quasi)-topos. The proof is streightforward.
+3.1. Basic operations.
+
+                                  Elementary operations
+1. Vertex deletion P Fjilk −V. 2. Edge deletion P Fjilk −E. 3. Edge addition P Fjilk +E.
+
+                           Pos                                       Finset         Finset
+                              Q               Q
+                                                              {a}         Q   {a}            Q
+
+                            Vertex deletion                              Edge addition
+
+                                                  Grp          Grp
+                                        N                N
+
+                                                   Edge deletion
+
+                            Figure 4. Elementary operations.
+
+
+                               Advanced operations
+   Let us introduce the following notation. P Fρ is a plafal with assigned number.
+In the general case, Veα and Eeβ are the components of P Fα and P Fβ respectively.
+Let us remark that Vα and Eeβ are not the entities with specified numbers.
+                      e
+   In definitions 3.9 – 3.14, we will use I ⊆ {1, n}. In definitions 3.9 –S3.11, condi-
+tions (i) are performed in accordance with the union of graphs H un = i∈I G(P Fi ).
+In definitions 3.12 – 3.14,Tconditions (i) are realized in accordance with the inter-
+section of graphs H in = i∈I G(P Fi ).
+Definition 3.9. A union of plafales P F un is defined by H un and the following
+condition holds:
+    ecommon = S
+(i) V
+                                      S
+                 µ∈I Vµ and Ecommon =   ν∈I Eν .
+                     e      e               e
+
+Definition 3.10. A docking of plafales P F doc is defined by H un and the following
+condition holds:
+(i) V
+    ecommon = hV
+               eη , . . . , V
+                            eµ i, η < . . . < µ and Eecommon = hEe% , . . . , Eeχ i, % < . . . < χ.
+
+Definition 3.11. A docking• of plafales P F doc• is defined by H un and the following
+condition holds:
+(i) Condition (i) of definition 3.9 is performed for 1 ≤ r1 ≤ r − 1 common vertices
+and for 1 ≤ t1 ≤ t − 1 common edges; condition (i) of definition 3.10 is realized for
+r2 = r − r1 common vertices5 and for t2 = t − t1 common edges6.
+Definition 3.12. An intersection of plafales P F in is defined by H in and the fol-
+lowing condition holds:
+    ecommon = T
+(i) V
+                                     T
+                µ∈I Vµ and Ecommon =   ν∈I Eν .
+                    e      e                e
+
+   5r is a quantity of common vertices.
+   6t is a quantity of common edges.
+6                                                                               DMYTRO TOPCHYI
+
+
+Definition 3.13. A merger of plafales P F m is defined by H in and the following
+condition holds:
+(i) V
+    ecommon = hV
+               eη , . . . , V
+                            eµ i, η < . . . < µ and Eecommon = hEe% , . . . , Eeχ i, % < . . . < χ.
+Definition 3.14. A merger• of plafales P F m• is defined by H in and the following
+condition holds:
+(i) Condition (i) of definition 3.12 is performed for 1 ≤ r1 ≤ r − 1 common vertices
+and for 1 ≤ t1 ≤ t − 1 common edges; condition (i) of definition 3.13 is realized for
+r2 = r − r1 common vertices and for t2 = t − t1 common edges.
+   Agreement7. In definitions 3.10, 3.13, in the case of the chain of operations:
+Vcommon = hhV
+e            eα , . . . , V
+                          eµ i, . . . , hV            eζ i, V
+                                         eβ , . . . , V     eς , . . . , V
+                                                                         eξ i, k + m = |I|, and taking into
+           |                     {z                     } | {z }
+                                                      k≥1                                                                    m≥0
+account |I|! permutations for V ecommon , we get V ecommon = hV   eα , . . . , V
+                                                                               eς i, where
+α < β < . . . < ς. For the same reason, this is performed for Ecommon .
+                                                              e
+   On the other hand, definitions 3.9 – 3.14 can be formulated in the following form:
+                                                     ?={∪,∩}                                                              P
+in general, S k (G(P F )) −−−−−−→ S(G(P F )) −
+                                             → P F .
+                                                                        Z                                           33
+                                                                                                                              2                                                                2
+                               N    Z                                                                            PF                R                 4                  1
+                                                                                                                                                                                                       Z
+                                                                                                                   30
+                                              81                     8                                    un                                                    44
+                       8                                        8                                    PF                  Z         N                                       R           Z               N
+                    PF     R           Q   PF
+                                             80      Ring    PF R PF 1                    Ring                                                               PF
+                                                                                                                                                               40                                                       in
+                      8                                        8    80                                                                                                                                             PF
+                                            7                                   7                                                          Q                                                  33
+                                                                                                 141                                                                                       PF
+                               N   N                                                         PF                      1       Set       3             3
+                                                                                                                                                              Q         2          1         20            3
+                                                                        N                      150
+                                                                                                                                                         Z             Z                                Z
+                                                                                                                    33
+                    Set                                       Set                                                             2                                                              2
+                           N       {a}                                                                           PF                Set               4                  1
+                                                                                                                                                                                  Set                  Vect
+                                                                                                                   30
+                                              81              N                     {a}                                                                         44
+                       8                                                                                  doc    Finset            N                         PF         R       Finset                 Field
+                    PF     R           Q   PF        Ring           R Q                   Ring       PF                                                        40                          R                                 m
+                      8                      80              Pos                Grp                                                                                                                N                   PF
+                                            7                               7                                                              {a,b}
+                                                                                              141                                                                                                              {a,b}
+                           Pos     Grp                                                                               1       Set       3             3       Field      2          1          33           3
+                                                                                           PF                                                                                              PF
+                                                                                             150                                                                                             20
+                                                                                                                                                     Rel               Vect                             Rel
+
+                                                                                                                    33
+                    Set                                                                                                       2                                                                2
+                           Top Met                            Set                                                PF                R                 4                  1
+                                                                                                                                                                                                       Z
+                                                                                                                   30
+                                                81           Top                                                                                                  44
+                       8                                                        Met                       doc•           Z         Ord                       PF             R          Z               Grp
+                    PF     R        Q      PF        Ring           R                     Ring      PF                                                         40                                                            m•
+                      8                      80                                 N                                                                                                            Ord                     PF
+                                            7                               7                                                              {a,b,c}
+                                                                                              141                                                                                                              {a,b,c}
+                           N       N                                                                                 1       Set       3             3
+                                                                                                                                                               Grp      2          1          33  3
+                                                                                           PF                                                                                              PF
+                                                                                             150                                                                                             20 Card
+                                                                                                                                                     Card              Z
+
+
+
+                                                     Figure 5. Advanced operations.
+
+
+  In the case of labeled plafales, P F un , P F doc , P F doc• , P F in , P F m and P F m• are
+not labeled plafales, but they can be transformed into the specified types.
+Definition 3.15. A     Q product• of two plafales    P F prod• = P F × P F 0 is defined by
+                                            0
+the graph product         = G(P F ) × G(P F ) and the following condition holds:
+(i) ∀Ve prod•
+              ∈ S(Ve prod•   e prod• = V
+                           ):V         e×Ve 0 , ∀Eeprod ∈ S(Eeprod ) : Eeprod = U-standard.
+(i) is realized in accordance with . The mentioned Eeprod can be different.
+                                      Q
+
+    We stress that P F prod is a particular case of P F prod• .
+Definition 3.16. A decomposition of plafales is a collection of maps such that
+               Hd                                           S(P)
+S(G(P F )) −−→ S(G(P F )) −−−→ S(P F ) and the following conditions hold:
+(i) for k-vertices, which were located at the common vertice, of k-decomposited
+graphs we have: V  ecommon corresponds to one of the above vertices (k-variations)
+and there is a collection of arbitrary U-standard that correspond to remaining
+(k − 1)-vertices. By the same argument, this is performed for l-edges;
+(ii) V
+     eno common and Eeno common remain unchanged;
+where H d is an operation of the decomposition of graphs; here S(P) is a collection
+of P and S(P F ) is a collection of P F for S(G(P F )) respectively.
+    Remark 3. The other types of operations will be discussed in a further paper.
+    7We use this agreement only as a recommendation.
+                                                                                                   7
+
+
+                                         4. geo-space
+Definition 4.1. A geo-space is a tuple hR3 , U i and is denoted by |P F |U , where
+U is a universe of U-standard such that R3 ∩ U = ∅.
+   The objects of the following type hObject ⊂ R3 , Object ⊂ U i, which will be
+represented in this section, are implemented in |P F |U . R3 ∩ U = ∅ means that
+U is located outside of R3 . Let us provide a visual perception by analogy in CS.
+R3 is a directory and U is a collection of external files.
+4.1. Geo-plafal.
+Let us give a definition of a geometric representation of P F = hG, P F i in |P F |U .
+Definition 4.2. h|G|, P F i is a geo-plafal and is denoted by |P F |, |G| is the geo-
+                                                    P0                                    P
+metric realization of G in R3 such that |G| −→ P F in accordance with G −
+                                                                         → P F .
+   Let us give a comment to definition 4.2. We use the metric or coherent topologies.
+   On the other hand, |P F | can be formulated by analogy with definition 2.1.
+Definition 4.3. h|K|, |K|, T i is a geo-plafal and is denoted by |P F | or |P F |ij ,
+where |K| is a 1-dimensional simplicial (topological) complex8, i = |V (|K|)| > 0,
+j = |E(|K|)| > 0, |K| = hS(|V|), e S(|E|)ie is a collection of arbitrary U-standard,
+T = hS(|v|), S(|e|)i is a collection of correspondences such that ∀|v| ∈ V (|K|)
+                |v|∈S(|v|)
+we have |v| −−−−−−→ |V|    e = U-standard, |V|  e ∈ S(|V|),e here S(|V|) e is a collection
+of arbitrary U-standard that correspond to the vertices; ∀|e| ∈ E(|K|) we have
+     |e|∈S(|e|)
+|e| −−−−−−→ |E|   e = U-standard, |E|
+                                    e ∈ S(|E|),
+                                             e here S(|E|)   e s a collection of arbitrary
+U-standard that correspond to the edges. Generally, h|v|, |V|,    e |v|i is called a vertex
+of the geo-plafal and is denoted by |V|; h|e|, |E|, |e|i is called an edge of the geo-plafal
+                                                e
+and is denoted by |E|. By V (|P F |) we denote a collection of vertices, by E(|P F |)
+we denote a collection of edges. Between |E| and |V|1 , |V|2 , which are connected by
+|E|, there is not necessarily a logical relation. If ∀|V| ∈ V (|P F |) : |V| = h|v|, |v|, |v|i
+and ∀|E| ∈ E(|P F |) : |E| = h|e|, |e|, |e|i, then we say that |P F | = |K| is a trivial
+geo-plafal and write ∗ |P F |. So, |P F | = hV (|P F |), E(|P F |)i.
+   Remark 4. |S(|V|)|   e ≤ i and |S(|E|)|
+                                         e ≤ j. We can operate with S(|V|)   e and
+S(|E|)
+    e that contain the same entities. Claim 2.2, definition 2.3 and definition 2.4
+are performed for |P F |. Agreement. We claim that h|K|, |K|, T i = h|K|, |K|i,
+h|v|, |V|,
+       e |v|i = h|v|, |V|i,
+                       e h|e|, |E|,
+                                e |e|i = h|e|, |E|i.
+                                                e By S(|P F |) we denote a collection
+of geo-plafales. By S(|K|) we denote a collection of |K| as supports of geo-plafales.
+                                                          Λ∗ =hϑ,oi
+Definition 4.4. A geo-plafal morphism |P F | −−−−−−→ |P F |0 is a tuple of maps’s
+collections such that
+         ϑ
+(1) |K| −→ |K|0 , ϑ is a morphism between polyhedra;
+           o=ho∗ ,o∗∗ i            o∗                     o∗∗
+(2) |K| −−−−−−−→ |K|0 : S(|V|)
+                               e −       e 0 ) and S(|E|)
+                                    → S(|V|           e −       e 0 ).
+                                                          −→ S(|E|
+Note that (2) is realized in accordance with (1).
+Claim 4.5. Geo-plafales and geo-plafal morphisms form the category Geo-Plafales,
+together with the componentwise compositions hϑ, oi ◦ hϑ0 , o0 i = hϑ ◦ ϑ0 , o ◦ o0 i and
+identities id|P F | = hid|K| , id|K| i. The proof is left to the reader.
+    8|K| is a polyhedron that does not contain an isolated vertex. Generally, |v| is a vertex of |K|,
+|e| is an edge of |K|. V (|K|) is a collection of vertices, E(|K|) is a collection of edges.
+8                                                  DMYTRO TOPCHYI
+
+
+Definition 4.6. A product of     Qtwo geo-plafales  |P F |prod = |P F | × |P F |0 is defined
+                                              0
+by the product of polyhedra        = |K| × |K| and the following condition holds:
+      e prod ∈ S(|V|
+(i) ∀|V|          e prod ) : |V|
+                              e prod = |V|   e 0 , ∀|E|
+                                        e × |V|      e prod ∈ S(|E|
+                                                                  e prod ) : |E|
+                                                                              e prod = |e|.
+                                                  Q
+Notice that (i) is realized in accordance with .
+Definition 4.7. A coproduct of two geo-plafales       |P F |coprod = |P F | + |P F |0 is
+defined by the disjoint union of polyhedra = |K|+|K|0 and the following condition
+                                            `
+holds:
+(i) in the general case, |K| + |K|0 is a coproduct of categories.
+                                                          `
+Let us remark that (i) is performed in accordance with .
+Claim 4.8. In Geo-plafales, there’re no initial and terminal objects. The (co)-
+product of any two geo-plafales does not always exist. Geo-plafales is not a
+(quasi)-topos. The proof is similar to the proofs in the section 3.
+                                                    G=hL,Fi                                                                               L
+It is easily proved that Plafales −−−−−−→ Geo-Plafales such that SCpx −      → Top
+and F is a collection of identity functors, here SCpx is the category of abstract
+simplicial complexes, Top is the category of topological spaces. Note that advanced
+operations are performed for geo-plafales. The reader will have no difficulty in
+showing that |P F | = hCW, P F i, where CW is a 1-dimensional cellular complex.
+4.2. Point.
+Definition 4.9. hpl, pl = U-standard, X i is a limit point and is denoted by |P F |pl ,
+                                                                            X
+where pl is a limit point in R3 , here X is a correspondence such that pl −→ pl =
+U-standard. If pl = pl (a singleton in Top), then we say that |P F |pl = pl is a
+trivial point and write ∗ |P F |pl .
+   Agreement. We claim that hpl, pl = U-standard, X i = hpl, pl = U-standardi.
+By S(|P F |pl ) we denote a collection of limit points in |P F |U . By S(pl) we denote
+a collection of limit points in R3 as supports of S(|P F |pl ).
+                                                                   tpl =hς,Ri
+Definition 4.10. A morphism |P F |pl              pl
+                                  i −−−−−−→ |P F |j is a tuple of maps’s collec-
+tions such that
+          ς
+(1) (pl)i →
+          − (pl)j ;
+                  R
+(2) (pl)i −→ (pl)j .
+Note that (2) is performed in accordance with (1).
+Claim 4.11. S(|P F |pl ) and morphisms tpl form the category PFpl.
+Proof. id|P F |pl = hidpl , idpl i. We get the following commutative diagrams:
+
+                                      t                                                    t
+                                pl     pl_1-2           pl                      pl          pl_1-2                      pl
+                         │PF│                    │PF│                    │PF│                                    │PF│
+                                1                       2                       1                                       2
+                                                        t      °t
+(t      °t     )° t                                      pl_2-3 pl_1-2
+  pl_3-4 pl_2-3 pl_1-2                                                                               1      pl                         t
+                                                                                                     │PF│                               pl_2-3
+                                                    t                                                       2
+                                                     pl_2-3                      t
+                                                                                  pl_1-2
+t      ° (t   °t      )
+ pl_3-4 pl_2-3 pl_1-2
+                                                    t     °t
+                                                    pl_3-4 pl_2-3
+                                       t
+                                 pl     pl_3-4          pl                                                         pl                               pl
+                          │PF│                   │PF│                                                       │PF│             t               │PF│
+                                 4                      3                                                          2          pl_2-3                3
+
+
+                                                                                                                                                    
+                                                                                      9
+
+
+  Remark 5. The concept of R3 with isolated points and the concept of a flickering
+point, as a superposition of limit and isolated points, will be discussed elsewhere.
+4.3. Manifold.
+Definition 4.12. hM, M = U-standard, Ii is a manifold and is denoted by |P F |M ,
+where M is a topological manifold in R3 , here I is a correspondence such that
+                       I
+M (as a whole object) −→ M = U-standard. If M = M (an object of TopMfd9),
+then we say that |P F |M = M is a trivial manifold and write ∗ |P F |M .
+   Agreement. We note that hM, M = U-standard, Ii = hM, M = U-standardi.
+By S(|P F |M ) we denote a collection of manifolds in |P F |U . By S(M ) we denote
+a collection of manifolds in R3 as supports of S(|P F |M ).
+   Remark 6. The concept of (open) cover J of M (including the relationship
+with (pre)-sheaf) and a collection of arbitrary U-standard, which corresponds to
+J , will be the object of another paper.
+                                            tM =h%,Di
+Definition 4.13. A morphism |P F |M                  M
+                                    i −−−−−−→ |P F |j is a tuple of maps’s col-
+lections such that
+        %
+(1) Mi −→ Mj , % is a morphism between topological manifolds;
+         D
+(2) Mi −→ Mj .
+Notice that (2) is realized in accordance with (1).
+Claim 4.14. S(|P F |M ) and morphisms tM form the category PFM. Omitted.
+   Definitions 4.6 and 4.7 (in terms of the product manifold and the disjoint union
+of topological manifolds) and results of claim 4.8 are performed for PFM.
+4.4. Dynamical system.
+Let us summarize and use the results of [13], [14].
+Definition 4.15. hhS, Gi, hU, Ωii is a dynamical system and is denoted by d |P F |U ,
+where S = hR3 , τ i is a locally compact space satisfies the second axiom of countabil-
+ity and undergoes homeomorphic transformations, here G is a topological group;
+Ω is a collection of identity functors and results of advanced operations.
+                                                  tDS =hΦ,∆i
+Definition 4.16. A homomorphism d |P F |U                     U
+                                             i −−−−−−−→ |P F |j is a tuple of maps’s
+collections such that
+                Φ=hµ,µ∗ i
+(1) hSi , Gi i −−−−−−→ hSj , Gj i, Φ is a homomorphism between dynamical systems:
+   µ                                            µ∗
+   → Sj , µ is a continuous mapping and Gi −→ Gj , µ∗ is a homomorphic mapping;
+Si −
+(2) ∆ is a collection of maps between hUi , Ωi i and hUj , Ωj i.
+Let us remark that (2) is realized in accordance with (1).
+   The category of dynamical systems is not considered in this paper.
+                                    Perspective
+   Plafal (∗-plafal) complex and plafal (∗-plafal) cell complex are generalizations
+of the plafal (∗-plafal), and this will be the object of another paper. We will give
+a short description. For any abstract simplicial complex (n-dimensional cell com-
+plex) let there be a correspondence between each face (k-skeleton) and U-standard
+(U ∗ -standard respectively).
+  9TopMfd is the category of topological manifolds.
+10                                                DMYTRO TOPCHYI
+
+
+                                                                     5. p = np
+   The proof of the equality of complexity classes P and NP will be given in a
+constructive way using the apparatus of the constructive theory of serendipity ap-
+proximations (CTSA)10 [4], [15 – 24]. The total volume of CTSA is about 1000
+papers (they can be traced evolutionarily by the indicated references). In the gen-
+eral case, by S we denote an instance of an NP-complete problem. Using the
+deterministic Turing machine (DTM), C is a type of S with answer “Yes” after
+the checking, otherwise is C. We will operate with a plane in |P F |U . By |P F |U
+                                                                                 pl we
+denote this topological subspace. Note that theorem 5.1 is a theoretical model of
+P = NP; the implementation model of theorem 5.1 on the DTM will be described.
+Theorem 5.1. Based on the theory of plafales, there exists an algorithm that allows
+to identify all instances of the Boolean satisfiability problem in polynomial time.
+
+Proof. 1st stage. Computational template (CT). Let us consider the follo-
+                                NN
+wing labeled geo-plafal: |P F |N 0
+                                     = h|K| is a boundary of SFE, |K|i, where SFE is
+a serendipity finite element (square D = {|x| ≤ 1, |y| ≤ 1}) on N vertices (nodes)11.
+Vertices |v|i are evenly spaced on the boundary of SFE (|x| = 1, |y| = 1) by the rule
+                         
+                         
+                         
+                          i ∈ {4 · l + 1}; −1 ≤ x < 1, y = −1,
+                         i ∈ {4 · l + 2}; x = 1, −1 ≤ y < 1,
+                         
+                         
+                         
+                    G = i ∈ {4 · l + 3}; −1 < x ≤ 1, y = 1,
+                         
+                         i ∈ {4 · (l + 1)}; x = −1, −1 < y ≤ 1,
+                         
+                         
+                         
+                         
+                         l ∈ Z ∪ {0}.
+                                +
+
+
+So, i |V| = h|v|i , |V|
+                     e i = hSi , Hi = ζi (t)·Ci +θi (t)·C i ii, Hi is a linear combination such
+that ζi (t)+θi (t) = 1, ζi (t), θi (t) ∈ R, where t is time; ∀|E| ∈ |P F |N  N0 : |E| = h|e|, |e|i.
+                                                                               N
+
+
+
+
+                                                   Universe of U-standard
+                                                 ~                        ~          ~                       ~
+                                                |V |                     |V |       |V |                    |V |
+                                                       1                        4             2                    3
+
+
+
+                                                                                z
+
+                  S = ‹R ,τ›
+                         3
+
+
+
+
+                                                             |v|                                                                             U
+                                                                                    -1< x <1, y = 1                     |v|         | PF |
+                                                                     4                                                        3              pl
+                                                                                              y
+                                                                                          x
+                                                                                                                       |v|
+                               x = -1, -1< y <1                                                                              4l+2
+                                                                                                    x = 1, -1< y <1
+                                                                         SFE
+
+                                      |v|                    -1< x <1, y = -1                     |v|
+                                            1                                                           2
+                                                           |v|                      |v|
+                                                                 5                        4l+1
+
+
+
+                   Figure 6. Computational template (in general).
+
+
+   10Constructive theory of serendipity approximations is a branch of Bernstein’s school of con-
+structive function theory and A. N. Khomchenko is the founder of this scientific school [20], [21].
+Note. S. N. Bernstein presented in a constructive way (1912) the Weierstrass theorem (1885).
+   11Serendipity finite element is a finite element that does not contain interior nodes.
+                                                                                                                                                                                11
+
+
+   2nd stage. Relationship between Si and basis function (BF)12 Li (x, y).
+Let us consider the word Si over a given alphabet.  RR Then to each Si corresponds a
+unique “weight” χi = PNSi S ; however χi = G      1
+                                                      D i
+                                                         L (x, y)dxdy ≥ 0, here G is the
+                             i=1 i
+area of D, where N is a quantity of instances of the Boolean satisfiability problem.
+Hence to each χi corresponds a unique collection of the basis functions (UCBF) in
+the CTSA. A relationship between the word Si and UCBF is structurally shown13.
+   3rd stage. The analysis of the field function (FF)14. Let us configure
+the CT. To be precise, χ1 < χ2 < . . . < χl < . . . (or χ1 > χ2 > . . . > χl > . . .). So,
+we get i |V| = h|v|i (χi ), |V|
+                             e i i.
+   We will operate with the non-standard Dirichlet boundary value problem [4].
+                                                    
+                                                    
+                                                    g1 > g2 > . . . > gl > . . . > 0,
+                                                    
+                                                    limi→∞ gi → 0,
+                                                    
+                                                    
+                                                    
+f (x, y, t) = i=1 λi (t)·Li (x, y) such that (?) = λi (t) = ζi (t) · (gi − gi+1 ) + gi+1 ,
+             PN                                     
+                                                    
+                                                    
+                                                    λi (t) ∈ (gi+1 , gi ), t < T,
+                                                                gi , t ≥ T,
+                                                    
+                                                             
+                                                    
+                                                    λi (t) =
+                                                    
+                                                                gi+1 , t ≥ T.
+Let us comment. For C we get λi (t) = gi , otherwise is λi (t) = gi+1 (see figure 7).
+
+                                                                Universe of U-standard
+                                         ~                                                         ~
+                                        |V |        = ‹S1 ‹-› χ 1 , H1 ›                          |V |             = ‹S3 ‹-› χ 3 , H3 ›
+                                               1                                                              3
+
+
+
+                                            g                                    z
+                                                                                                                                                           S = ‹R ,τ›
+                                                1                                                                                                                      3
+                                                                                                      g
+                                                                                                          2
+                                            g
+                                                2                                                                               g
+                           f(x,y,t)                                                                       g                         3
+                                                                                                              3
+
+                                                                                                                                               g                      U
+                                                                                                                                |v|                4         | PF |
+                                                                                                                                         3                            pl
+                                                                                                                                               χ
+                                                                                                y                                                  4l+2
+                                                                                              x SFE
+                                                                                                                              |v|
+                                      x = -1, -1< y <1                                                                                  4l+2
+                                                                                                                  x = 1, -1< y <1
+
+
+
+                                                |v|                 -1< x <1, y = -1                      |v|
+                                                      1                                       χ                   2
+                                                            χ                   |v|               2
+                                                                1
+                                                                                       4l+1
+
+
+
+                                      Figure 7. The field function.
+
+                                                     PN
+Taking into account the field function f (x, y, t) =    i=1 λi (t) · Li (x, y) and G, let
+us provide the claim, which is a generalization of the results of Ph. D. thesis [19].
+Claim 5.2. In general, for SFE on N vertices the condition of invariant of the field
+function (stability of the FF w.r.t. the BF) is the following system
+ P4 λ (t)       PN
+    i=1 i         i=5 λi (t)
+P 4
+              = P N −4
+                             , N = 4 · k, P
+    4
+ i=1 λi (t) = i∈{5,9,...,4·l+1} λi (t) + i∈{4·l+2,4·l+3,4·(l+1),1≤l<N } λi (t) , N = 4 · k + 1,
+
+
+  P4 4           P        N −1                      P        N −5
+    i=1 λi (t)    i∈{4·l+1,4·l+2,1≤l≤N } λi (t)       i∈{4·l+3,4·(l+1),1≤l<N } λi (t)
+
+
+     4        = P            N −2              +        P       N −6                   , N = 4 · k + 2,
+ P4i=1 λi (t)
+
+                  i∈{4·l+1,4·l+2,4·l+3,1≤l≤N } λi (t)       i∈{8,12,...,4·(l+1)} λi (t)
+      4        =                N −3                  +              N −7               , N = 4 · k + 3.
+
+   12Let us show the key properties of the basis function. L (x , y ) = δ                                                                                                  PN
+                                                                                     i=1 Li (x, y) = 1,                     i             k            k      ik and
+where δik is the Kronecker delta, here i is a number of function and k is a number of node.
+   13In fact, this relationship acts as a “lock” (hard model [25]) such that S ↔ UCBF. This
+                                                                                   i
+enables us to determine Si based on λi , here λi is a value of the FF at a given node |v|i .
+   14
+     The field function (interpolant) f (x, y, t) = N
+                                                   P
+                                                     i=1 λi (t) · Li (x, y) makes an interpolation on
+the boundary of SFE and an approximation inside of SFE.
+12                                                  DMYTRO TOPCHYI
+
+                                                                                P4                    P8
+                                                                                            λ (t)            λ (t)
+Proof. For SFE on 8 nodes the above condition is i=14 i = i=54 i [4], [19].
+Let us consider the BF of SFE on N nodes in the following representation: Li (x, y) =
+                                                                    (
+                                                                      N
+   Pr           k l
+                       P2            k l                                 if 4 | N,
+= k,l=0 σkl ·x ·y = k,l=0 µkl ·x ·y ·Q(x, y) such that min r = 4N
+                                                                     [ 4 ] + 1 if 4 - N.
+Let us show the rule of arrangement of the number of nodes. N ≡ b (mod 4) (see
+figure 8). In the case of b ∈ {1, 2, 3}, b nodes are spaced on b sides of SFE.
+
+                            N-4                                                                      N-5
+                                nodes                                                                    nodes
+                            4                                                                        4
+
+
+
+
+            |v|                         |v|                                      |v|                             |v|
+                  4                           3                                         4                              3
+N-4                                                N-4              N-5                                                     N-5
+    nodes                                              nodes            nodes                                                   nodes
+4                                                  4                4                                                       4
+                         b=0                                                                        b=1
+
+
+            |v|                          |v|                                      |v|                             |v|
+                  1                            2                                        1                               2
+
+                                  N-4                                                                      N-1
+                                      nodes                                                                    nodes
+                                  4                                                                        4
+
+
+
+
+                            N-6                                                                      N-3
+                                nodes                                                                    nodes
+                            4                                                                        4
+
+
+
+
+            |v|                         |v|                                      |v|                             |v|
+                  4                           3                                         4                              3
+N-6                                                N-2              N-7                                                     N-3
+    nodes                                              nodes            nodes                                                   nodes
+4                                                  4                4                                                       4
+                         b=2                                                                        b=3
+
+
+            |v|                          |v|                                     |v|                              |v|
+                  1                            2                                        1                               2
+
+                                  N-2                                                                      N-3
+                                      nodes                                                                    nodes
+                                  4                                                                        4
+
+
+                                  Figure 8. Configuration of nodes.
+
+
+    K1 (x, y), . . . , K8 (x, y) is a collection of the basis functions of SFE on 8 nodes
+[4], [17], [22]. Therefore, K1 (−1, −1) = 1, K2 (1, −1) = 1, K3 (1, 1) = 1,
+K4 (−1, 1) = 1, K5 (0, −1) = 1, K6 (1, 0) = 1, K7 (0, 1) = 1, K8 (−1, 0) = 1.
+Let us show one of the collections of the basis functions for SFE·8.
+                      1                                                         1
+     K1 (x, y) =        · (1 − x) · (1 − y) · xy,              K5 (x, y) =        · (1 − x2 ) · (1 − y)2 ,
+                      4                                                         4
+
+                  1                                                                         1
+     K2 (x, y) = − · (1 + x) · (1 − y) · xy,                        K6 (x, y) =               · (1 − y 2 ) · (1 + x)2 ,
+                  4                                                                         4
+
+                      1                                                         1
+     K3 (x, y) =        · (1 + x) · (1 + y) · xy,              K7 (x, y) =        · (1 − x2 ) · (1 + y)2 ,
+                      4                                                         4
+
+                  1                                                               1
+     K4 (x, y) = − · (1 − x) · (1 + y) · xy,                    K8 (x, y) =         · (1 − y 2 ) · (1 − x)2 .
+                  4                                                               4
+                                                                                                         13
+
+
+Let us introduce the following system.
+     
+     
+      W1 = λ5 (t) · L5 (x, y) + . . . + λ4·l+1 (t) · L4·l+1 (x, y) = K5 (x, y) · γ5 =
+     
+             |                                 {z                              }
+                                        2·b3
+                                                   2 + 19·b −4)/4
+                             q   =(N +         −4·b
+                              1          3                3
+     
+     
+     
+       = K   (x,  y) · (λ   (t)   · Q  (x,    y) +   . . . + λ4·l+1 (t) · Q4·l+1 (x, y)),
+     
+           5              5          5
+     
+     
+     
+                       |                                    {z                        }
+     
+                                                        3
+                                                    2·b         2 + 19·b −4)/4
+     
+     
+                                       q 1 =(N  +     3   −4·b      3
+     
+     
+     
+     
+      W 2 =  λ 6 (t) · L 6 (x,   y) +  .  . . +  λ 4·l+2    (t) · L 4·l+2 (x, y) = K6 (x, y) · γ6 =
+     
+             |                                 {z                              }
+                                             3
+                             q2 =(N − 4·b          2 − 17·b −4)/4
+     
+     
+                                         3    +6·b        3
+     
+       = K6 (x, y) · (λ6 (t) · Q6 (x, y) + . . . + λ4·l+2 (t) · Q4·l+2 (x, y)),
+     
+     
+     
+     
+     
+                       |                                    {z                        }
+                                                   3
+                                        q2 =(N − 4·b     2 17·b
+                                                   3 +6·b − 3 −4)/4
+Y=
+      
+      
+       W3 = λ7 (t) · L7 (x, y) + . . . + λ4·l+3 (t) · L4·l+3 (x, y) = K7 (x, y) · γ7 =
+      
+              |                               {z                             }
+                                          2·b3
+                                                   2 + b −4)/4
+                               q   =(N +       −2·b
+                                3          3            3
+      
+      
+      
+        = K   (x,  y) · (λ   (t)  · Q  (x,   y) +  . . .  + λ4·l+3 (t) · Q4·l+3 (x, y)),
+      
+            7              7         7
+      
+      
+      
+                        |                                 {z                         }
+      
+                                                        3
+                                                     2·b       2 + b −4)/4
+      
+      
+                                         q 3 =(N +    3   −2·b    3
+      
+      
+      
+      
+       W 4 =  λ 8 (t) · L 8 (x,  y) +  . .  . + λ 4·(l+1)   (t) · L 4·(l+1) (x, y) = K8 (x, y) · γ8 =
+      
+              |                                 {z                               }
+                                        q4 =(N −b−4)/4
+      
+      
+      
+      
+      
+      
+      
+       = K8 (x, y) · (λ8 (t) · Q8 (x, y) + . . . + λ4·(l+1) (t) · Q4·(l+1) (x, y)) .
+      
+                        |                                   {z                           }
+                                                  q4 =(N −b−4)/4)
+                           PN                 P                         P
+  Using Y, we have i=1 λi (t) · Li (x, y) = 1≤i≤4 λi (t) · Li (x, y) + 1≤i≤4 Wi =
+  P                                     P
+= 1≤i≤4 λi (t) · Ki (x, y) · Qi (x, y) + 1≤i≤4 Wi . Let us remark that L1 (−1, −1) =
+= K1 (−1, −1), L2 (1, −1) = K2 (1, −1), L3 (1, 1) = K3 (1,P1), L4 (−1, 1) = K4 (−1, 1).
+                                             P               4                     8
+                                                                 λ (t)                 λ (t)
+   Taking into account the above condition i=14 i = i=54 i for SFE·8 and the
+                       
+                       
+                        L1 (x, y) + L2 (x, y) + L5 (x, y) + . . . + L4·l+1 (x, y) = 1,
+                       
+                       L (x, y) + L (x, y) + L (x, y) + . . . + L
+                           2           3            6                     4·l+2 (x, y) = 1,
+properties of the BF:
+                       
+                       
+                        L 3 (x, y) + L4 (x, y) + L 7 (x, y)  + . . . + L 4·l+3 (x, y) = 1,
+                         L1 (x, y) + L4 (x, y) + L8 (x, y) + . . . + L4·(l+1) (x, y) = 1,
+                       
+           
+           Q1 (0, −1) + Q2 (0, −1) + Q5 (0, −1) + . . . + Q4·l+1 (0, −1) = 1,
+           
+           
+           Q (1, 0) + Q (1, 0) + Q (1, 0) + . . . + Q
+               2          3            6                   4·l+2 (1, 0) = 1,
+we get I =                                                                                  and
+           Q3 (0, 1) + Q4 (0, 1) + Q7 (0, 1) + . . . + Q4·l+3 (0, 1) = 1,
+           
+           
+             Q1 (−1, 0) + Q4 (−1, 0) + Q8 (−1, 0) + . . . + Q4·(l+1) (−1, 0) = 1,
+           
+                                                                         P4                    P8
+                                                                                   λ (t)            γ
+in accordance with coordinates of Qj in I we have i=14 i = i=5         4
+                                                                           i
+                                                                             . Our goal
+is that the choice of the basis functions is insignificant. So, the expected value of
+difference of two field functions with different collections of the basis functions is
+equal to zero. To do that, let us show for the first equation of I. Q1 (0, −1) +
++ Q2 (0, −1) = 0 and Q5 (0, −1) + . . . + Q4·l+1 (0, −1) = 1, then Q4·j+1 (0, −1) = q11 ,
+where qi is a quantity of nodes on the side of SFE (see Y).
+   Let us show for b = 0. ∀j ∈ N \ {1, 4} : Qj (x, y) = N 4−4 , here (x, y) are
+                                             P4                  PN
+                                                i=1 λi (t)        i=5 λi (t)
+coordinates in I. Thus we obtain                   4         =    N −4         .                         
+  Remark 7. There is an additional condition of symmetry of boundary values in
+some nodes for SFE·12 with n-parametric interpolation (n > 13) and SFE·16 [19].
+14                                     DMYTRO TOPCHYI
+
+
+   Further, we will use the results of Stepanets’ school15. Let us provide the results
+                                                          ∞
+of [26]. Let M
+             P∞be a set of all sequences m = {mk }k=1 of nonnegative numbers such
+that |m| := k=1 mk ≤ 1. Let r be a positive number and Ar is a set of all nonin-
+creasing sequences α = {αk }∞      k=1 of positive numbers such that limk→∞ αk = 0. In
+                                                              P∞     1/(1−r)
+the case of r ∈ (0, 1), we have the following condition: k=1 αk                < ∞. Denote
+by γn = {k1 , k2 , . . . , kn } a collection of n different integers n = 1, 2, . . . , and for
+any m ∈ M and α ∈ Ar , set
+                                             ∞
+                                             X                  X
+               En (m) = En (α, r, m) :=          αk · mrk − sup     αk · mrk ,
+                                                               γn
+                                               k=1                  k∈γn
+
+and
+                       En = En (α, r) := sup En (m) = sup En (α, r, m).
+                                         m∈M                 m∈M
+(i) Let α ∈ Ar and r ≥ 1. Then ∀n ∈ N ∃s∗ > n such that
+                                            s∗
+                                                     !−r
+                                                −1/r
+                                            X
+                                    ∗
+                      En (α, r) = (s − n) ·    αk        .
+                                                       k=1
+s∗ is determined by
+                                s
+                                              !−r                   s∗            !−r
+                                       −1/r                                −1/r
+                                X                                   X
+                                                        ∗
+                 sup(s − n) ·         αk            = (s − n) ·           αk            .
+                 s>n
+                                k=1                                 k=1
+The exact upper bound is realized by the sequence m∗ = {m∗k }∞k=1 from M:
+                            1/r Ps∗
+                       (
+                                        −1/r −1
+                         (αk · i=1 αi       ) , k ∈ [1, s∗ ],
+                 m∗k =            ∗
+                         0, k > s .
+(ii) Let α ∈ Ar and r ∈ (0, 1). Then ∀n ∈ N is performed the following equality
+                                               !r/(r−1)                   1−r
+                                      s∗                    ∞
+                                           −1/r                    1/(1−r) 
+                                      X                    X
+  En = En (α, r) = (s∗ − n)1/(1−r) ·    αk              +        αk            ,
+                                               k=1                        k=s∗ +1
+       ∗
+here s > n is the biggest natural number such that
+                                  s
+                                     −1/r
+                                  X
+                    s − n ≤ αs1/r   αk , for all s ∈ (n, s∗ ].
+                                        k=1
+The exact upper bound is realized by the sequence m∗ = {m∗k }∞    k=1 from M:
+                                   P ∗          1/(r−1)
+        −1/r                           s    −1/r             1/(r−1)
+         (αk    · (s∗ − n)1/(1−r) ·     i=1 αi             · En       , k ∈ [1, s∗ ],
+ m∗k =
+       α1/(1−r) · E 1/(r−1) , k > s∗ .
+                 k         n
+             ∗
+Note. 1. s = P (n), here P (n) is a polynomial. 2. Since solutions of these extremal
+problems may be of an independent interest, in the paper [26], the authors propose
+a new method of finding these solutions, which leads to the required result by
+essentially shorter and more transparent way.
+    15In the series of works, O. I. Stepanets’ and his successors study approximation properties of
+              p
+the spaces Sϕ   introduced by Stepanets’. Problems of finding exact values of n-term approximations
+of q-ellipsoids in the spaces considered are reduced to some extremal problems for series with terms
+that are determined as a product of elements of two nonnegative sequences one of which is fixed
+and another varies on certain set.
+                                                                                                                                 15
+
+
+    Let us combine all of the above into the following provisions. It is easily shown
+that the conditions of [26] can be implemented for the field function f (x, y, t).
+Indeed, λi (t) > 0, λi (t) ↓, limi→∞ λi (t) → 0, Li (x, y) = mri and it is clear that
+P∞ 1/(1−r)
+   i=1 λi,0<r<1 (t) < ∞ in the case of values gi from (6) of U. This means that the
+results of [26] provide an effective tool for the analysis of the field function16. The
+above results give an opportunity to make the estimate for N → ∞ (word length).
+    Ideology of P = NP. Due to checking the first M instances (see 1st stage:
+configuration of nodes) with total computational complexity of O(nk ), we can iden-
+tify (N − M ) instances without checking them17, here M is polynomially bounded.
+Agreement. Without loss of generality it can be assumed that a functional type of
+λi (t) = fi (t) is not principled; all required g1 , . . . , gM +1 are defined at time t = T ∗ .
+Note that this configuration is an example of the soft mathematical modeling [25].
+    Let us P
+           implement the results of     claim 5.2. We can assume without loss of genera-
+              4                     PN
+                 λ (t)                 i=5 λi (t)
+lity that i=14 i · $(N, t) =            N −4      , where $(N, t) is a stabilization function.
+                                                                                                    PN
+                                                                                                            i=1 λi (t)
+Claim 5.3. The value of the field function at the barycentre18                                                N              equals
+κ · $(N, t) · En (λ(t), 1), here κ = const, see (i).
+                                        Ps∗            ∗
+                                         i=1 λi (T         )
+Proof. It is easily shown that              s∗                     = κ · $(s∗ , T ∗ ) · En (λ(T ∗ ), 1), where
+                                      P4        ∗                                 PN                ∗
+                                       i=1 λi (T )                                      i=5 λi (T       )
+s∗ = M . Taking into account                 4         · $(N, T ∗ ) =                    N −4               , by induction,
+we obtain the statement.                                                                                                 
+                                                                      4· 4   λ (T ∗ )
+                                                                        P                                         P4    r
+                                                                                                                   i=1 λi (t)
+Corollary 5.4. We get $(N, T ∗ ) = 4·N ·κ·E (λ(T ∗ ),1)−(N
+                                                     i=1 i
+                                                           −4)· 4
+                                                               P                                   ∗          ,          4       ×
+                     PN                                        n                          i=1 λi (T )
+                            r           PN     r
+                       i=5 λi (t)         i=1 λi (t)
+×($(N, t))r =      N −4    and     N      equals υ · ($(N, t))r · En (λ(t), 0 < r < 1),
+here υ = const, see (ii). The proof is omitted.
+   Remark 8. Claim 5.3 links two scientific schools: CTSA and Stepanets’ school.
+   Using claim 5.3, corollary 5.4 and the results of the Bogolyubov principle of the
+decay of correlations for an infinite three-dimensional systems [27], [28] for the FF
+(see figure 7), we have the following system U for determination of λi (t), here i > s∗ .
+          PN λ (t)
+               i=1 i
+                          = κ · $(N, t) · En (λ(t), 1), (1)
+          P4 N r
+         
+                                           PN     r
+                   λ  (t)                     i=5 λi (t)
+                          · ($(N, t))r =
+         
+         
+         
+         
+         
+               i=1
+                  4
+                    i
+                                               N −4      , (2)
+            PN      r
+                   λ  (t)
+         
+                                          r
+          i=1      i
+                          = υ · ($(N, t)) · En (λ(t), 0 < r < 1), (3)
+         
+                 N
+    U = d F (t) = −LF (t) + aLint F (t), F (t)|t=0 = F (0), (4)
+           dt
+                                                  ∗            ∗∗
+         
+            λ s∗ +1≤i≤s∗ +υ (in the case of T ≤ t ≤ T ) such that
+         
+         
+         
+         
+            Hi = 0.5 · Ci + 0.5 · C i (in the case of t = T ∗ , see 1st stage), (5)
+         
+         
+         
+         
+         
+            λs∗ +υ+1≤i≤N (if t ≥ T ∗ ) = |gi − gi+1 | ≈ 0. (6)
+         
+
+Let us comment. (4) is the initial-value problem of the BBGKY hierarchy19. Taking
+into account s∗ = M , for operators L (which is defined by the Poisson bracket of free
+   16We are able to evaluate all “fluctuations” of the field function (according to all possible shifts).
+   17We are able to level the specified surplus of instances, N (see 2nd stage). We are interested
+in the case when M instances is a collection of C (see preamble). Our goal is to determine a
+position number of C in (N − M ) instances or to identify that all (N − M ) instances are C.
+   18Taking into account the results of Khomchenko’s school and Möbius’s problem (1827), we
+are able to manage the integral characteristics of the basis function at the barycentre.
+   19The Bogolyubov (Bogoliubov) - Born - Green - Kirkwood - Yvon hierarchy.
+16                                              DMYTRO TOPCHYI
+
+
+particles with boundary conditions on ∂Ws∗ ) and αLint (in the case of t > 0) we get
+                                                                  ∗
+                                                                s                 
+                                                                X             ∂
+(5.1) (LF (t))s∗ (x1 , . . . , xs∗ ) = Ls∗ Fs∗ (t) =                    pi ,                  Fs∗ (t, x1 , . . . , xs∗ ).
+                                                                i=1
+                                                                             ∂qi       ∂Ws∗
+
+Each particle is characterized by the phase coordinates (qi , pi ) ≡ xi ∈ R3 ×R3 , i ≥ 1.
+
+(5.2)                                                                 (aLint F (t))s∗ (x1 , . . . , xs∗ ) =
+          ∗
+         s Z
+         X
+ = σ2                       dps∗ +1 dηhη, (pi − ps∗ +1 )i × (Fs∗ +1 (t, x1 , . . . , qi , p∗i , . . . , xs∗ ,
+         i=1      R3 ×S2+
+
+                                  , qi − ση, p∗s∗ +1 ) − Fs∗ +1 (t, x1 , . . . , xs∗ , qi + ση, ps∗ +1 )),
+                       P3
+hη, (pi −ps∗ +1 )i = α=1 η α (pα     α         2               3
+                                 i −ps∗ +1 ), S+ = {η ∈ R ||η| = 1, hη, (pi −ps∗ +1 )i > 0},
+                ∗ ∗           ∗                             ∗
+for impulses pi , ps∗ +1 : pi = pi −ηhη, (pi −ps∗ +1 )i, ps∗ +1 = ps∗ +1 +ηhη, (pi −ps∗ +1 )i.
+Also for (4) we take into account s-particles correlation functions Gs∗ (t) [27], so
+                                X        Y
+(5.3)         F|Y | (t, Y ) =                  G|Xi | (t, Xi ), Y ≡ (x1 , . . . , xs∗ ).
+                                     P: Y = i Xi Xi ⊂P
+                                           S
+
+
+The chaos condition for s-particles correlation functions is as follows [27]:
+
+(5.4)                                                                              Gs∗ (t, x1 , . . . , xs∗ ) =
+                                                                                    ∗
+     ∞        Z                                                                    sY +υ
+     X1                                                                  ∗
+=                       dxs∗ +1 . . . dxs∗ +υ Us∗ +υ (t, 1, . . . , s + υ)                 G1 (0, xi )χΓs∗ +υ .
+  n=0
+      n!       R3 ×R3                                                               i=1
+
+Note that (5.4) can be obtained on the basis of the solutions of Liouville’s equations.
+    For a metrizable space S = hR3 , τ i the following condition holds: existence of
+the space of sequences of integrable translation-invariant functions [27]. f (x, y, t) is
+a phase space: each z-axis at the node is a particle of unit mass and diameter ρ > 0
+such that |qi − qj | ≥ ρ. For (5) we have: taking into account the subscript s∗ + υ
+                                              r=P (t)
+from (5.1) – (5.4), we operate with gi+1 < λs∗ +1≤i≤s∗ +υ (T ∗ ≤ t < T ∗∗ ) < gi (see ?)
+                             ∗∗
+and define λs∗ +1≤i≤s∗ +υ (T ), the number of r is polynomially bounded. For (6)
+we have ∀gs∗ +υ+1≤i≤N : gj+1 , gj are indistinguishable and we take into account
+P∞ 1/(1−r)
+   i=1 λi,0<r<1 (t) < ∞. This implies that, limt→T −0 λs +1≤i≤s +υ (t) → {gi , gi+1 }.
+                                                    ∗∗    ∗       ∗
+
+    Let us consider the total computational complexity. 1. Checking the first M
+instances with total computational complexity of O(nk ) (see ideology of P = NP).
+2. The analysis of U: 2a. checking λ0<r<1
+                                      1≤i≤s∗ (t) with total computational complexity
+         0
+of O(nk ). 2b. determination of λs∗ +1≤i≤s∗ +υ with total computational complexity
+        00
+of O(nk ). Notice that we use the apparatus of U for determination of λs∗ +1≤i≤s∗ +υ ,
+instead of item 1, because we use the results of Stepanets’   school (see (i) and (ii)).
+2c. Consider the segment s∗ + υ + 1 ≤ i ≤ N as 1≤j≤ϑ zj + P , here each of
+                                                        S
+zj contains l values such that l  υ; where ϑ, P are polynomials. Determination
+of each λzj is realized due to permutation with previously defined λs∗ +1≤i≤s∗ +υ
+(we take υ = (s∗ + υ − (s∗ + 1) + 1) evenly spaced representatives from each zj
+                                                                         000
+including endpoints) with total computational complexity of O(nk ). Thus we
+have leveled the surplus of (N − M ) instances of the Boolean satisfiability problem,
+so P = NP.                                                                             
+                                                                                            17
+
+
+5.1. The implementation model of theorem 5.1 on the DTM.
+
+   Using the DTM with polynomial memory, we cannot print on tape all instances
+of the Boolean satisfiability problem in polynomial time, but we can numerate them
+on tape in polynomial time. We will operate with polynomially bounded collection
+of computable values g1 , . . . , gM , . . . , gs∗ +υ+1 (including (ϑ · υ + P ) representatives
+from each zj (see 2c)) such that the relevant collection of computable “weights”
+χ1 = S1 +...+Ss∗S+υ
+                  1                                            SP
+                    +Sz +SP < . . . < χP = S1 +...+Ss∗ +υ +Sz +SP is given (see 2nd
+                         j                                          j
+stage), Szj is a numerated instance from zj , SP is a numerated instance from P .
+   Using theorem 5.1, we cannot make a permutation between two numerated in-
+stances, which are not the representatives from each zj , because a priori we take
+into account their unique “weights” (see 2nd stage). Since we operate with polyno-
+mial memory, we use the above collection of computable values for the field function.
+5.2. General comments.
+
+   Section 2.
+   Certainly, we consider a plafal as a deep extension of decorated graph.
+   Section 5.
+   1. To avoid conflicts, we operate only with universe of the Boolean satisfiability
+problem, where the implementation model of theorem 5.1 is an emulator. That is
+why, theorem 5.1 is not a universal algorithm (specifically, for the TSP). We work
+with computable values gi in S = hR3 , τ i, but not with universe of Si directly.
+   2. Constructive theory of serendipity approximations. Let us show the procedure
+of constructing of the basis function Li (x, y) in accordance with χi (customised BF).
+                 (
+                    χi = ξ · χ1i + (1 − ξ) · χ2i , (1)
+                    Li (x, y) = ξ · L1i (x, y) + (1 − ξ) · L2i (x, y). (2)
+(1) ⇒ (2), where ξ is a weighted coefficient, χ1i and χ2i are given loads of well-known
+basis functions L1i (x, y) and L2i (x, y) respectively. This is a comment for the 2nd st.
+   Let us provide an alternative apparatus for Li = mri (see 2nd, 3rd stages).
+We can use a substitute basis function Li (x, y). Let us show the key properties.
+                        PN
+Li (xk , yk ) 6= δik and i=1 Li (x, y) = 1, where δik is the Kronecker delta, here i is
+a number of function and k is a number of node.
+   Historical background. Dual role of the basis functions of serendipity finite ele-
+ments is proved by O. Zienkiewicz (1968). His group constructed a biquadratic basis
+(SFE·8), but Zienkiewicz’s paradox is formed: in some nodes exist negative loads
+(unnatural spectrum). In 1982 Khomchenko constructed a 13-parametric bicubic
+basis (SFE·12) with positive loads [20], [21], thus Zienkiewicz’s paradox was solved.
+Methods of constructing alternative (physically correct) bases are presented in [16].
+   3. The paper is performed in the spirit of “The science absolute of space: inde-
+pendent of the truth or falsity of Euclid’s axiom XI (which can never be decided a
+priori)” by J. Bolyai: rigorism that is tailored to the reader’s background.
+   4. The article was 16 years in the making. AI was not used.
+   Perspective. Using the quantum Turing machine (QTM), theorem 5.1 is per-
+formed for N P ⊆ BQP (here Hi is a vector in Hilbert space (see 1st stage)).
+18                                     DMYTRO TOPCHYI
+
+
+5.3. Appendix.
+
+     Let us give a strengthening of the results [26] in the case of |mk | ≤ 1, αk ≥ 0.
+     Let M be a set of all sequences m = {mk }∞  k=1 of real numbers such that
+
+(5.5)                        |mk | ≤ 1, k = 1, 2, . . . , (k ∈ N),
+              P∞
+and |m| := k=1 mk ≤ 1. Let also N be a fixed positive integer and AN be a
+set of all nonincreasing sequences α = {αk }∞        k=1 of nonnegative numbers such that
+αk = 0, k > s.
+   Denote by γn = {k1 , k2 , . . . , kn } a collection of n different integers n = 0, 1, 2, . . . ,
+and for any m ∈ M and α ∈ AN , set
+                          ∞
+                          X                     X                  N
+                                                                   X                     X
+En (m) = En (α, m) :=           αk · mk − sup          αk · mk =         αk · mk − sup          αk · mk
+                                          γn                                       γn
+                          k=1                   k∈γn               k=1                   k∈γn
+
+and
+(5.6)                 En = En (α) := sup En (m) = sup En (α, m).
+                                        m∈M                m∈M
+
+Lemma 5.5. Let α ∈ AN , N ∈ N. Then for any n = 0, 1, . . . , n < N
+                                                   N
+                                                   X
+                                       En (α) =           αk .
+                                                  k=n+1
+
+In this case, the exact upper bound on the right-hand side of the relation (5.6) is
+realized by the sequence m∗ = {m∗k }∞
+                                    k=1 such that
+                             
+                             1, k ∈ [1, N ],
+                             
+                         ∗
+(5.7)                  mk = −1, k ∈ [N + 1, 2 · N − 1],
+                             
+                               0, k > 2 · N − 1.
+                             
+
+Proof. Let M0 be a set of all sequences m ∈ M such that α1 ·m1 ≥ . . . ≥ αN · mN .
+Then
+                                 En = sup En (m).
+                                             m∈M0
+
+Indeed, let m ∈ M. We construct a sequence m0 ∈ M0 such that En (m) ≤ En (m0 ).
+   Step 1. If maxk∈[1,N ] αk · mk = αk1 · mk1 , k1 > 1, then represent the number
+mk1 in the form mk1 = mk1 + m    e k1 , where α1 · (m1 + mk1 ) = αk1 · mk1 . Consider
+                        (1)
+the sequence m(1) = {mk }∞  k=1 such that
+                                    
+                                    m1 + mk1 , k = 1,
+                                    
+                             (1)
+                           mk = m       e k1 , k = k1 ,
+                                    
+                                        mk , k 6= 1, k1 .
+                                    
+
+                                 (1)
+Since α1 ≥ αk1 , we have m1 = m1 + mk1 ≤ mk1 , |m(1) | = |m|, En (m(1) ) ≥ En (m)
+                       (1)             (1)
+and maxk∈[1,N ] αk · mk = α1 · m1 . If maxk∈[1,N ] αk · mk = α1 · m1 , then we
+set m(1) := m.
+                                 (1)             (1)
+   Step 2. If maxk∈[2,N ] αk · mk = αk1 · mk2 , k2 > 2, we represent the number
+mk2 in the form mk2 = mk2 + m  e k2 , where α2 · (m2 + mk2 ) = αk2 · mk2 . Consider
+                                                                                   19
+
+                             (2)
+the sequence m(2) = {mk }∞
+                         k=1 such that
+                               (1)
+                              m2 + mk2 , k = 2,
+                              
+                         (2)      (1)
+                       mk = m   e k2 , k = k2 ,
+                               (1)
+                              
+                                mk , k 6= 2, k2 .
+                       (1)
+Similarly, we have m2 = m2 + mk2 ≤ mk2 , |m(2) | = |m(1) | = |m|, En (m(2) ) ≥
+                              (2)                    (2)               (2)
+En (m(1) ) ≥ En (m) and α1 · m1 ≥ maxk∈[2,N ] αk · mk = α2 · m2 . If
+                 (2)               (1)
+maxk∈[2,N ] αk · mk = α2 · m2 , then we set m(2) := m(1) .
+   Step N. Continuing this procedure, at Nth step we finally construct the sequence
+             (N )                                             (N )      (N )
+m (N )
+       = {mk }∞   k=1 ∈ M such that |m
+                                          (N )
+                                               | = |m|, α1 · m1 ≥ α2 · m2 ≥ . . . ≥
+        (N )
+αN · mN and En (m(N ) ) ≥ En (m(N −1) ) ≥ . . . ≥ En (m(1) ) ≥ En (m). Setting
+m0 := m(N ) we see that it satisfies all the necessary relations.
+   By virtue of (5.5), for any sequence m ∈ M0 we have
+                                          N
+                                          X                   N
+                                                              X
+                         En (m) =                αk · mk ≤           αk .
+                                         k=n+1               k=n+1
+
+To finish the proof it is sufficient to make sure that the sequence m∗ = {m∗k }∞
+                                                                               k=1 of
+the form (5.7) belongs to the set M and
+                                                    N
+                                                    X
+                                     En (m∗ ) =            αk .
+                                                   k=n+1
+                                                                                   
+   Acknowledgement. Mathematics: A. N. Khomchenko (D. Sc., Petro Mohyla
+Black Sea National University), V. V. Lyubashenko (D. Sc., Institute of Mathema-
+tics of the NAS of Ukraine), A. A. Novikov (Ph. D., Novikov Labs), O. V. Rybak
+(Ph. D., Kyiv Polytechnic Institute), A. L. Shydlich (D. Sc., Institute of Mathema-
+tics of the NAS of Ukraine). Cryptography: L. V. Kovalchuk (D. Sc., Kyiv Poly-
+technic Institute). Thank you for your critical comments and consultations. Per-
+sonal participation: O. Borisenko, D. Chibisov, A. Druz, A. Evseev, A. Kulyeshov,
+M. Malaev, J. Milej, V. Obod, A. Sinchuk, O. Topchyi, W. Topolski, R. Valiullin,
+M. Vialkov, Yazeed Abdulrahman. I am really grateful for your help.
+                                   List of key terms
+             i
+   P F, P Fj – plafal; ∗ P F – trivial plafal; P Fi – plafal with assigned number
+   V – vertex of the plafal; E – edge of the plafal; P F – collection of U-standard
+   S(P F ) – collection of P F ; S(P F ) – collection of plafales
+   τ
+     V – vertex with assigned number; ς E – edge with assigned number
+   P Fjilk – labeled plafal; P F emp – empty plafal
+   P F prod – product of plafales; P F coprod – coproduct of plafales
+   P F un – union of plafales; P F doc – docking of plafales
+   P F in – intersection of plafales; P F m – merger of plafales
+   |P F |U – geo-space; |P F |, |P F |ij – geo-plafal; ∗ |P F | – trivial geo-plafal
+   |P F |prod – product of geo-plafales; |P F |coprod – coproduct of geo-plafales
+   |P F |pl – limit point in |P F |U ; ∗ |P F |pl – trivial point in |P F |U
+   |P F |M – manifold in |P F |U ; ∗ |P F |M – trivial manifold in |P F |U
+           U                               U                    U
+   d |P F | – dynamical system; |P F |pl – plane in |P F |
+20                                     DMYTRO TOPCHYI
+
+
+                                          References
+[1] Topchyi D. The theory of plafales. 1st edition. UK, Best Global Publishing, 2011, 634 p.
+[2] Topchyi D. The theory of plafales. 2nd edition. UK, Best Global Publishing, 2013, 695 p.
+[3] Topchyi D. The theory of plafales: applications of new cryptographic algorithms and plat-
+    forms in military complex, IT, banking system, financial market. 42nd Polish Conference on
+    Mathematics Applications. Warsaw, Polish Academy of Sciences, 2013, pp. 58.
+[4] Topchyi D. Models of the serendipity family, methods and software for testing non-stationary
+    physical fields. Ph. D. thesis. Mykolaiv, 2017, 152 p.
+[5] Topchyi D. The theory of plafales: quadruple role of the basis functions of serendipity finite
+    elements. Review of results. Scientific Works of Vinnytsia National Technical University, 2016,
+    no. 2, pp. 72 – 78.
+[6] Topchyi D. The software “Testing of non-stationary temperature fields with dynamic thermo-
+    elements”. Electronic scientific journal “Branch aspects of technical sciences”, Publishing house
+    INGN, 2015, iss. 4 (46), pp. 27 – 37.
+[7] Topchyi D. The theory of plafales: cryptographic complex “ECLECTIC-DT-1”. UK, Chip-
+    munkapublishing, 2015, 65 p.
+[8] Lai X., Massey J. L., Murphy S. Markov ciphers and differential cryptanalysis. Advances in
+    Cryptology, EUROCRYPT’91, Proceedings. Springer Verlag, 1991, pp. 17 – 38.
+[9] Matsui M. Linear cryptanalysis methods for DES cipher. Advances in Cryptology, EURO-
+    CRYPT’93, Proceedings. Springer Verlag, 1994, pp. 386 – 397.
+[10] Topchyi D. The theory of plafales:                    symmetric-key algorithm “STEEL”.
+    DOI: 10.13140/RG.2.2.10943.97445, 72 p.
+[11] Levy P. B. Formulating categorical concepts with classes. arXiv: 1801.08528 [math.CT], 21 p.
+[12] Gelfand I. M., Ponomarev V. A. Gabriel’s theorem is also true for representations of equipped
+    graphs by relations. Funct. Anal. Appl., 1981, vol. 15, iss. 2, pp. 71 – 72.
+[13] Barbashin E. A. On homomorphisms of dynamical systems. Mat. Sb. (N. S.), 1950,
+    vol. 27 (69), iss. 3, pp. 455 – 470.
+[14] Barbashin E. A. On homomorphisms of dynamical systems 2. Mat. Sb. (N. S.), 1951,
+    vol. 29 (71), iss. 3, pp. 501 – 518.
+[15] Astionenko I. A., Litvinenko Ye. I., Khomchenko A. N. Cognitive-graphic analysis of hierar-
+    chical bases of finite elements. Oldi-plus, 2019, 259 p.
+[16] Astionenko I. A., Litvinenko Ye. I., Khomchenko A. N. Construction of the multiparameter
+    polynomials by the bicubic element of serendipity family. Scientific reports of Belgorod State
+    University, 2009, vol. 5 (60), iss. 16, pp. 15 – 31.
+[17] Astionenko I. A. Models of approximation of functions by multiparameter polynomials of the
+    serendipity family. Ph. D. thesis. Kherson, 2011, 180 p.
+[18] Huchek P. Y. Development of geometric models and computer programs for function restora-
+    tion problems. Ph. D. thesis. Kherson, 1998, 162 p.
+[19] Kamaeva S. O. Geometric models and methods of the constructive restoration of physical
+    fields. Ph. D. thesis. Kharkiv, 2010, 218 p.
+[20] Khomchenko A. N. FEM: some probabilistic questions. VINITI: 1213, 1982, 9 p.
+[21] Khomchenko A. N. FEM: stochastic approach. VINITI: 5167, 1982, 7 p.
+[22] Khomchenko A. N., Tuluchenko G. Y. Geometric modeling on discrete elements. Oldi-plus,
+    2007, 270 p.
+[23] Litvinenko Ye. I. Mathematical models and algorithms of computer diagnostics of physical
+    fields. Ph. D. thesis. Kherson, 1999, 172 p.
+[24] Tuluchenko H. Y. Geometric modeling of scalar fields by the method of the averaging of
+    adaptive invariant templates. Dr. thesis. Kherson, 2008, 425 p.
+[25] Arnold V. I. Hard and soft mathematical models. MCCME, 2008, 32 p.
+[26] Stepanets’ O. I., Shydlich A. L. On one extremal problem for positive series. Ukrainian
+    Mathematical Journal, 2005, vol. 57, pp. 1968 – 1976.
+[27] Gerasimenko V. I., Shtyk V. O. The Bogolyubov principle of the decay of correlations for an
+    infinite three-dimensional systems. Reports of the National Academy of Sciences of Ukraine,
+    2008, vol. 3, pp. 7 – 13.
+[28] Gerasimenko V. I., Gapyak I. V. Advances in theory of evolution equations of many colliding
+    particles. Modern problems of mathematics and its applications. Proceedings of the Institute
+    of the NAS of Ukraine, 2023, vol. 20, iss. 1, pp. 729 – 804.
+
