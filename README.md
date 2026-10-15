@@ -6,7 +6,7 @@ Goal: establish whether the proof holds, and document exactly where it does or d
 
 ## Verdict
 
-Open. See `review/03_verdict.md`.
+Open until Sections 2-4 are reviewed, but Section 5 (the whole proof of Theorem 5.1) is done: the proof does not establish the theorem. Three independent defects, each sufficient: no algorithm is specified (ISSUE-001); the system that is to produce the unchecked answers never reads an instance (ISSUE-002); the complexity count assumes the conclusion and derives no polynomial (ISSUE-003). See `review/03_verdict.md` and `review/02_issues.md`.
 
 ## Layout
 

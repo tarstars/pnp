@@ -3,7 +3,9 @@ name = "pnp-check"
 version = "0.1.0"
 description = "Computational checks for the review of Topchyi's P = NP paper (September 2026)"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "sympy>=1.14.0",
+]
 
 [dependency-groups]
 dev = ["pytest>=8"]

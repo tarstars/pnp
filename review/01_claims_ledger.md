@@ -62,11 +62,11 @@ Total: 41 statements Definition 27, Claim 10, Theorem 1, Lemma 1, Corollary 2.
 
 | ID | Page | Line | Statement (opening) | Status | Notes |
 |---|---|---|---|---|---|
-| Theorem 5.1 | 10 | 633 | Based on the theory of plafales, there exists an algorithm that allows to identify all instances of the Boo... | unchecked | |
-| Claim 5.2 | 11 | 789 | In general, for SFE on N vertices the condition of invariant of the field function (stability of the FF w.r... | unchecked | |
-| Claim 5.3 | 15 | 1152 | The value of the field function at the barycentre18 N equals κ · $(N, t) · En (λ(t), 1), here κ = const, se... | unchecked | |
-| Corollary 5.4 | 15 | 1164 | We get $(N, T ∗ ) = 4·N ·κ·E (λ(T ∗ ),1)−(N i=1 i −4)· 4 | unchecked | |
-| Lemma 5.5 | 18 | 1382 | Let α ∈ AN , N ∈ N. Then for any n = 0, 1, . . . , n < N N X | unchecked | |
+| Theorem 5.1 | 10 | 633 | Based on the theory of plafales, there exists an algorithm that allows to identify all instances of the Boo... | error | Proof does not establish the statement; no input/output/steps (ISSUE-001), U reads no instance (ISSUE-002), no polynomial derived (ISSUE-003). Statement itself undecided. |
+| Claim 5.2 | 11 | 789 | In general, for SFE on N vertices the condition of invariant of the field function (stability of the FF w.r... | unclear | Holds for N = 8 (experiment sfe8). General-N proof not followable (ISSUE-008). Not load-bearing: replaced by the factor w at line 1147. |
+| Claim 5.3 | 15 | 1152 | The value of the field function at the barycentre18 N equals κ · $(N, t) · En (λ(t), 1), here κ = const, se... | gap | kappa and w unspecified; proof is 'easily shown ... by induction' (ISSUE-004, ISSUE-007). |
+| Corollary 5.4 | 15 | 1164 | We get $(N, T ∗ ) = 4·N ·κ·E (λ(T ∗ ),1)−(N i=1 i −4)· 4 | gap | 'The proof is omitted' (ISSUE-004). |
+| Lemma 5.5 | 18 | 1382 | Let α ∈ AN , N ∈ N. Then for any n = 0, 1, . . . , n < N N X | ok | True; two-line direct proof in section notes. Typo 'k > s' for 'k > N'. Not used in the proof of Theorem 5.1. |
 
 ## Unnumbered load-bearing steps (Section 5)
 
@@ -74,7 +74,7 @@ Steps that carry the argument but have no statement number. Treated like stateme
 
 | ID | Page | Line | Step | Status | Notes |
 |---|---|---|---|---|---|
-| S5-CT | 10 | 636 | Computational template: labeled geo-plafal on a serendipity finite element with N boundary nodes | unchecked | |
-| S5-IDEO | 15 | 1139 | Ideology of P = NP: checking the first M instances identifies the remaining N - M without checking | unchecked | |
-| S5-COMPLX | 16 | 1286 | Total complexity accounting (items 1, 2a, 2b, 2c) ending in "so P = NP" | unchecked | |
-| S5-DTM | 17 | 1307 | Implementation model of Theorem 5.1 on a deterministic Turing machine | unchecked | |
+| S5-CT | 10 | 636 | Computational template: labeled geo-plafal on a serendipity finite element with N boundary nodes | unclear | Square with N boundary nodes; H_i mixture never governed; instance enters only as a number; basis with prescribed loads asserted (ISSUE-005). |
+| S5-IDEO | 15 | 1139 | Ideology of P = NP: checking the first M instances identifies the remaining N - M without checking | error | U contains no instance (ISSUE-002); BBGKY block inert (ISSUE-006); weight order carries no information, experiment weight_order (ISSUE-005). |
+| S5-COMPLX | 16 | 1286 | Total complexity accounting (items 1, 2a, 2b, 2c) ending in "so P = NP" | error | Item 1 assumes the conclusion; exponents and polynomials declared, none derived (ISSUE-003). |
+| S5-DTM | 17 | 1307 | Implementation model of Theorem 5.1 on a deterministic Turing machine | error | No input, output or step; invokes Theorem 5.1 inside its own implementation (ISSUE-001). |
