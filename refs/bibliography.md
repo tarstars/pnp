@@ -4,13 +4,15 @@ All references of the paper, with the role each one plays in the argument and wh
 
 CTSA = constructive theory of serendipity approximations, the body of work the author says has "about 1000 papers" and that Section 5 relies on through [4] and [15-24].
 
+For the related literature collected on 15 October 2026, including later postings and the Bournez-Graca-Pouly continuous-computation framework, see [the collection index](README.md), [BibTeX records](related_articles.bib), and [PDF provenance](pdfs/manifest.lock.json). Access status does not by itself verify a cited theorem or its application to SAT.
+
 | # | Reference | Role in the proof | Access |
 |---|---|---|---|
 | [1] | Topchyi D. The theory of plafales. 1st edition. UK, Best Global Publishing, 2011, 634 p. | Base of the theory (1st ed.) | unknown |
 | [2] | Topchyi D. The theory of plafales. 2nd edition. UK, Best Global Publishing, 2013, 695 p. | Base of the theory (2nd ed.) | unknown |
 | [3] | Topchyi D. The theory of plafales: applications of new cryptographic algorithms and platforms in military complex, IT, banking system, financial market. 42nd Polish Conference on Mathematics Applications. Warsaw, Polish Academy of Sciences, 2013, pp. 58. |  | unknown |
 | [4] | Topchyi D. Models of the serendipity family, methods and software for testing non-stationary physical fields. Ph. D. thesis. Mykolaiv, 2017, 152 p. | CTSA; Dirichlet problem; serendipity elements | unknown |
-| [5] | Topchyi D. The theory of plafales: quadruple role of the basis functions of serendipity finite elements. Review of results. Scientific Works of Vinnytsia National Technical University, 2016, no. 2, pp. 72 – 78. |  | unknown |
+| [5] | Topchyi D. The theory of plafales: quadruple role of the basis functions of serendipity finite elements. Review of results. Scientific Works of Vinnytsia National Technical University, 2016, no. 2, pp. 72 – 78. |  | [English PDF archived](pdfs/topchyi_2016_serendipity_review_en.pdf), 7 internal pages, CC BY 4.0; see collection notes |
 | [6] | Topchyi D. The software “Testing of non-stationary temperature fields with dynamic thermoelements”. Electronic scientific journal “Branch aspects of technical sciences”, Publishing house INGN, 2015, iss. 4 (46), pp. 27 – 37. |  | unknown |
 | [7] | Topchyi D. The theory of plafales: cryptographic complex “ECLECTIC-DT-1”. UK, Chipmunkapublishing, 2015, 65 p. |  | unknown |
 | [8] | Lai X., Massey J. L., Murphy S. Markov ciphers and differential cryptanalysis. Advances in Cryptology, EUROCRYPT’91, Proceedings. Springer Verlag, 1991, pp. 17 – 38. |  | unknown |
@@ -31,6 +33,6 @@ CTSA = constructive theory of serendipity approximations, the body of work the a
 | [23] | Litvinenko Ye. I. Mathematical models and algorithms of computer diagnostics of physical fields. Ph. D. thesis. Kherson, 1999, 172 p. | CTSA | unknown |
 | [24] | Tuluchenko H. Y. Geometric modeling of scalar fields by the method of the averaging of adaptive invariant templates. Dr. thesis. Kherson, 2008, 425 p. | CTSA | unknown |
 | [25] | Arnold V. I. Hard and soft mathematical models. MCCME, 2008, 32 p. | "Soft mathematical modeling" (Sec. 5) | unknown |
-| [26] | Stepanets’ O. I., Shydlich A. L. On one extremal problem for positive series. Ukrainian Mathematical Journal, 2005, vol. 57, pp. 1968 – 1976. | Extremal problem for positive series; source of Lemma 5.5 | unknown |
+| [26] | Stepanets’ O. I., Shydlich A. L. On one extremal problem for positive series. Ukrainian Mathematical Journal, 2005, vol. 57, pp. 1968 – 1976. | Extremal problem for positive series; source of Lemma 5.5 | Publisher and original-journal abstracts verified; [official Ukrainian-PDF link](https://umj.imath.kiev.ua/index.php/umj/article/view/3718/4161) located, but binary/full text not verified; English full text not obtained |
 | [27] | Gerasimenko V. I., Shtyk V. O. The Bogolyubov principle of the decay of correlations for an infinite three-dimensional systems. Reports of the National Academy of Sciences of Ukraine, 2008, vol. 3, pp. 7 – 13. | Bogolyubov decay of correlations ("shell of the proof") | unknown |
-| [28] | Gerasimenko V. I., Gapyak I. V. Advances in theory of evolution equations of many colliding particles. Modern problems of mathematics and its applications. Proceedings of the Institute of the NAS of Ukraine, 2023, vol. 20, iss. 1, pp. 729 – 804. | Evolution equations of colliding particles | unknown |
+| [28] | Gerasimenko V. I., Gapyak I. V. Advances in theory of evolution equations of many colliding particles. Modern problems of mathematics and its applications. Proceedings of the Institute of the NAS of Ukraine, 2023, vol. 20, iss. 1, pp. 729 – 804. | Evolution equations of colliding particles | [arXiv v1 PDF archived](pdfs/gerasimenko_gapyak_2023_colliding_particles_arxiv_v1.pdf), 67 pages, CC0; not claimed byte-identical to the journal printing |
