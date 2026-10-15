@@ -1,0 +1,40 @@
+name: Import requested related articles (one-time)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/import-related-articles-once.yml']
+permissions:
+  contents: write
+concurrency:
+  group: import-related-articles
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out the requested revision
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install PDF inspection tools if needed
+        run: |
+          if ! command -v pdfinfo >/dev/null || ! command -v pdftotext >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y --no-install-recommends poppler-utils
+          fi
+      - name: Fetch licensed original PDFs and record provenance
+        run: python3 scripts/fetch_related_articles.py
+      - name: Verify archived bytes
+        working-directory: refs/pdfs
+        run: sha256sum --check SHA256SUMS
+      - name: Commit only the requested literature archive
+        run: |
+          git add -- refs/pdfs
+          if git diff --cached --quiet; then
+            echo 'All requested PDFs are already present.'
+            exit 0
+          fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Archive four licensed related papers with PDF validation and SHA-256 provenance'
+          git pull --rebase origin main
+          git push origin HEAD:main
