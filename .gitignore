@@ -5,3 +5,5 @@ __pycache__/
 .ruff_cache/
 .mypy_cache/
 experiments/out/
+report/build/
+report/build.log

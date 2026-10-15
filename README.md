@@ -6,7 +6,7 @@ Goal: establish whether the proof holds, and document exactly where it does or d
 
 ## Verdict
 
-Open until Sections 2-4 are reviewed, but Section 5 (the whole proof of Theorem 5.1) is done: the proof does not establish the theorem. Three independent defects, each sufficient: no algorithm is specified (ISSUE-001); the system that is to produce the unchecked answers never reads an instance (ISSUE-002); the complexity count assumes the conclusion and derives no polynomial (ISSUE-003). See `review/03_verdict.md` and `review/02_issues.md`.
+Open until Sections 2-4 are reviewed, but Section 5 (the whole proof of Theorem 5.1) is done: the proof does not establish the theorem. Three independent defects, each sufficient: no algorithm is specified (ISSUE-001); the system that is to produce the unchecked answers never reads an instance (ISSUE-002); the complexity count assumes the conclusion and derives no polynomial (ISSUE-003). See `review/03_verdict.md` and `review/02_issues.md`, or the article `report/review.pdf`.
 
 ## Layout
 
@@ -18,6 +18,7 @@ Open until Sections 2-4 are reviewed, but Section 5 (the whole proof of Theorem 
 | `review/02_issues.md` | Numbered log of problems found, with severity and location. |
 | `review/03_verdict.md` | The final assessment and the criteria it is judged against. |
 | `review/sections/` | Section-by-section working notes. |
+| `report/` | The review as an article: `review.tex` and the compiled `review.pdf` (rebuild with `scripts/build_report.sh`). |
 | `refs/bibliography.md` | The 28 references, their role in the argument, and whether we obtained them. |
 | `experiments/` | Computational checks of concrete constructions from the paper. |
 | `src/pnp_check/`, `tests/` | Python package and tests backing the experiments. |
@@ -38,4 +39,4 @@ uv sync
 uv run pytest
 ```
 
-Regenerating the paper text needs `pdftotext` from poppler-utils.
+Regenerating the paper text needs `pdftotext` from poppler-utils. Building the article needs TeX Live with `latexmk` and `pgfplots`.

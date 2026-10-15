@@ -1,0 +1,344 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue!60!black]{hyperref}
+
+\definecolor{series1}{HTML}{2A78D6}
+\definecolor{series2}{HTML}{EB6834}
+\definecolor{series3}{HTML}{1BAF7A}
+\definecolor{gridline}{HTML}{E1E0D9}
+\definecolor{axisline}{HTML}{C3C2B7}
+\definecolor{inkmuted}{HTML}{898781}
+
+\newtheorem*{lemma*}{Lemma 5.5 (as stated in the paper)}
+\newcommand{\Cbar}{\overline{C}}
+\newcommand{\paperline}[1]{(line~#1)}
+\newcommand{\issue}[1]{\textrm{\mdseries\textsc{issue-#1}}}
+
+\title{A review of ``The theory of plafales: P vs NP problem solution''\\
+\large D.~Topchyi, 11~September 2026, 20~pages}
+\author{Review repository \texttt{github.com/tarstars/pnp}}
+\date{15 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The paper under review claims, as Theorem~5.1, that ``there exists an algorithm that allows to identify all instances of the Boolean satisfiability problem in polynomial time'', and concludes $\mathrm{P}=\mathrm{NP}$. The proof occupies Section~5 of the paper. We examined every numbered statement and every unnumbered load-bearing step of that section, quoting the text by page and line, and ran two computational experiments. The proof does not establish the theorem. Three independent defects each suffice: no algorithm is specified (no input, no output, no step); the system of equations that is supposed to produce the answers of the unchecked instances contains neither the instances nor anything derived from them; and the complexity count charges polynomial time for ``checking'' satisfiability instances, which is the question itself, and derives no polynomial for any step. Sections~2--4 of the paper, which build a category-theoretic apparatus, are not used by the proof beyond a single phrase. What does hold: Lemma~5.5 is true, with a two-line proof; the paper's Claim~5.2 is correct for the eight-node serendipity element, which we verified symbolically; and the restatement of a result of Stepanets' and Shydlich is faithful.
+\end{abstract}
+
+\section{Introduction}
+
+The paper \cite{topchyi} is dated 11~September 2026, has 20~pages, five sections and 28~references. Section~1 recounts the history of the author's ``theory of plafales''. Sections~2--4 define a \emph{plafal} (a simple graph whose vertices and edges carry arbitrary mathematical objects), the category of plafales, and ``geo-space''. Section~5 states Theorem~5.1 and gives its proof, ending with the sentence ``so P\,=\,NP'' \paperline{1303}.
+
+\paragraph{Scope.} This review covers Section~5 completely. Sections~2--4 are discussed only in so far as the proof uses them (Section~\ref{sec:role24}).
+
+\paragraph{Method.} The review repository keeps the paper, a fixed text extraction of it, a ledger of all 41 numbered statements plus four unnumbered load-bearing steps, an issue log and the experiments. Every claim about the paper below is anchored to a page of the PDF and a line of the text extraction (\texttt{paper/paper.txt}, produced by \texttt{pdftotext -layout}); formulas that the extraction garbles were read from rendered page images. Each finding is first stated in the paper's words, then as a defect, then with its consequence for Theorem~5.1. Open points are recorded as questions, not as verdicts.
+
+\paragraph{Notation.} $C$ denotes an instance whose answer is ``Yes'' (satisfiable) and $\Cbar$ one whose answer is ``No'', following the paper's preamble \paperline{627--629}. SFE stands for serendipity finite element, a finite element without interior nodes. DTM is a deterministic Turing machine. CTSA is the paper's name for the ``constructive theory of serendipity approximations'' of Khomchenko's school.
+
+\section{The argument of Section 5, as the paper presents it}
+\label{sec:argument}
+
+\subsection{The statement}
+
+Theorem~5.1 \paperline{633}: ``Based on the theory of plafales, there exists an algorithm that allows to identify all instances of the Boolean satisfiability problem in polynomial time.'' The paper adds \paperline{631--632} that ``theorem~5.1 is a theoretical model of P\,=\,NP; the implementation model of theorem~5.1 on the DTM will be described.''
+
+The word ``identify'' is not defined. The only operational description is footnote~17 (page~15): with $N$ instances, after ``checking the first $M$ instances'', the goal is ``to determine a position number of $C$ in $(N-M)$ instances or to identify that all $(N-M)$ instances are $\Cbar$.''
+
+\subsection{First stage: the computational template}
+
+The proof considers a square $D=\{|x|\le 1,\ |y|\le 1\}$ with $N$ nodes evenly spaced on its boundary, numbered so that the residue of the index modulo~4 selects the side \paperline{636--656}. The paper calls this a ``labeled geo-plafal''. Node $i$ carries the pair $\langle S_i, H_i\rangle$ where $S_i$ is an instance and
+\[
+H_i=\zeta_i(t)\,C_i+\theta_i(t)\,\Cbar_i,\qquad \zeta_i(t)+\theta_i(t)=1,
+\]
+``$t$ is time'' \paperline{657--658}. Nothing in the paper states what governs $\zeta_i(t)$.
+
+\subsection{Second stage: from an instance to a basis function}
+
+\paperline{711--719}: ``Let us consider the word $S_i$ over a given alphabet. Then to each $S_i$ corresponds a unique `weight' $\chi_i = S_i/\sum_{i=1}^N S_i$; however $\chi_i=\frac1G\iint_D L_i(x,y)\,dx\,dy\ge 0$, here $G$ is the area of $D$, where $N$ is a quantity of instances of the Boolean satisfiability problem. Hence to each $\chi_i$ corresponds a unique collection of the basis functions (UCBF) in the CTSA.''
+
+The word $S_i$ is used as a number in an unstated encoding; its normalised value is declared equal to the load (the normalised integral) of the nodal basis function $L_i$ at node $i$. Footnote~13 says the relationship ``acts as a `lock' \ldots\ such that $S_i\leftrightarrow$ UCBF. This enables us to determine $S_i$ based on $\lambda_i$.''
+
+\subsection{Third stage: the field function}
+
+Nodes are ordered by weight, $\chi_1<\chi_2<\cdots$ \paperline{722}. A fixed decreasing sequence $g_1>g_2>\cdots>0$ with $g_i\to 0$ is chosen and the ``field function'' is
+\[
+f(x,y,t)=\sum_{i=1}^N \lambda_i(t)\,L_i(x,y),\qquad
+\lambda_i(t)=\zeta_i(t)\,(g_i-g_{i+1})+g_{i+1}\in(g_{i+1},g_i)\ \text{for } t<T,
+\]
+and for $t\ge T$: ``For $C$ we get $\lambda_i(t)=g_i$, otherwise is $\lambda_i(t)=g_{i+1}$'' \paperline{745}. So the answer to instance $i$ is encoded as the nodal value $\lambda_i\in\{g_i,g_{i+1}\}$; before time $T$ the value is in between.
+
+\subsection{Claim 5.2}
+
+Claim~5.2 \paperline{789} states, for an SFE on $N$ nodes, ``the condition of invariant of the field function (stability of the FF w.r.t.\ the BF)''. For $N=4k$ it reads
+\begin{equation}
+\frac14\sum_{i=1}^4\lambda_i(t)=\frac1{N-4}\sum_{i=5}^N\lambda_i(t),
+\label{eq:claim52}
+\end{equation}
+with split sums for the other residues of $N$ modulo~4. The proof text explains the meaning (page~13): ``Our goal is that the choice of the basis functions is insignificant. So, the expected value of difference of two field functions with different collections of the basis functions is equal to zero.'' In other words: the interpolant is the same for two different nodal bases exactly when \eqref{eq:claim52} holds.
+
+\subsection{A result of Stepanets' and Shydlich}
+
+Lines~1052--1118 restate \cite{stepanets}: for a nonincreasing positive sequence $\alpha$ with limit~0 and sequences $m\ge 0$ with $\sum_k m_k\le 1$,
+\[
+E_n(\alpha,r)=\sup_{m}\Bigl(\sum_{k}\alpha_k m_k^r-\sup_{|\gamma|=n}\sum_{k\in\gamma}\alpha_k m_k^r\Bigr),
+\]
+with closed forms (i) for $r\ge 1$ and (ii) for $0<r<1$, both in terms of an index $s^*>n$ determined by a supremum. The paper then adds \paperline{1119}: ``Note.~1. $s^*=P(n)$, here $P(n)$ is a polynomial.'' To apply the result it sets \paperline{1134--1135}: ``$\lambda_i(t)>0$, $\lambda_i(t)\downarrow$, $\lim_{i\to\infty}\lambda_i(t)\to 0$, $L_i(x,y)=m_i^r$''.
+
+\subsection{``Ideology of P = NP''}
+
+\paperline{1139--1141}: ``Due to checking the first $M$ instances (see 1st stage: configuration of nodes) with total computational complexity of $O(n^k)$, we can identify $(N-M)$ instances without checking them, here $M$ is polynomially bounded.''
+
+\subsection{The stabilisation function, Claim 5.3 and Corollary 5.4}
+
+\paperline{1147--1149}: ``We can assume without loss of generality that $\frac14\sum_{i=1}^4\lambda_i(t)\cdot\varpi(N,t)=\frac1{N-4}\sum_{i=5}^N\lambda_i(t)$, where $\varpi(N,t)$ is a stabilization function.'' Claim~5.3 \paperline{1152}: the value of the field function at the barycentre, $\frac1N\sum_{i=1}^N\lambda_i(t)$, ``equals $\kappa\cdot\varpi(N,t)\cdot E_n(\lambda(t),1)$, here $\kappa=\mathrm{const}$, see (i)''. Its proof \paperline{1157--1163}: ``It is easily shown that \ldots\ where $s^*=M$. Taking into account \ldots\ by induction, we obtain the statement.'' Corollary~5.4 \paperline{1164} gives a formula for $\varpi(N,T^*)$ and an $r$-power analogue with a further constant $\upsilon$; ``The proof is omitted.''
+
+\subsection{The system $\mathcal U$}
+
+\paperline{1174--1176}: ``Using claim~5.3, corollary~5.4 and the results of the Bogolyubov principle of the decay of correlations for an infinite three-dimensional systems [27], [28] for the FF (see figure~7), we have the following system $\mathcal U$ for determination of $\lambda_i(t)$, here $i>s^*$.'' The system (page~15) is
+\begin{align}
+\tfrac1N\textstyle\sum_{i=1}^N\lambda_i(t) &= \kappa\,\varpi(N,t)\,E_n(\lambda(t),1), \tag{1}\\
+\tfrac14\textstyle\sum_{i=1}^4\lambda_i^r(t)\cdot\varpi(N,t)^r &= \tfrac1{N-4}\textstyle\sum_{i=5}^N\lambda_i^r(t), \tag{2}\\
+\tfrac1N\textstyle\sum_{i=1}^N\lambda_i^r(t) &= \upsilon\,\varpi(N,t)^r\,E_n(\lambda(t),0<r<1), \tag{3}\\
+\tfrac{d}{dt}F(t) &= -\mathcal L F(t)+\mathbf a\mathcal L^{\mathrm{int}}F(t),\quad F(0)\ \text{given}, \tag{4}\\
+\lambda_{s^*+1\le i\le s^*+\upsilon} &\ \text{for } T^*\le t\le T^{**} \text{ such that } H_i=0.5\,C_i+0.5\,\Cbar_i \text{ at } t=T^*, \tag{5}\\
+\lambda_{s^*+\upsilon+1\le i\le N}(t\ge T^*) &= |g_i-g_{i+1}|\approx 0. \tag{6}
+\end{align}
+Equation~(4) is the BBGKY hierarchy for a gas of hard spheres in $\mathbb R^3$, with the Liouville operator, the collision operator and the chaos condition copied from \cite{gerasimenko} as formulas (5.1)--(5.4) on page~16. The link to the field function is one sentence \paperline{1275}: ``$f(x,y,t)$ is a phase space: each $z$-axis at the node is a particle of unit mass and diameter $\rho>0$ such that $|q_i-q_j|\ge\rho$.'' The paper comments on~(6) \paperline{1281}: ``$g_{j+1}$, $g_j$ are indistinguishable'', and concludes \paperline{1283}: ``This implies that $\lim_{t\to T^{**}-0}\lambda_{s^*+1\le i\le s^*+\upsilon}(t)\to\{g_i,g_{i+1}\}$.''
+
+\subsection{The complexity count}
+
+\paperline{1286--1303}: ``1. Checking the first $M$ instances with total computational complexity of $O(n^k)$ (see ideology of P\,=\,NP). 2. The analysis of $\mathcal U$: 2a. checking $\lambda^{0<r<1}_{1\le i\le s^*}(t)$ with total computational complexity of $O(n^{k'})$. 2b. determination of $\lambda_{s^*+1\le i\le s^*+\upsilon}$ with total computational complexity of $O(n^{k''})$. \ldots\ 2c. Consider the segment $s^*+\upsilon+1\le i\le N$ as $\bigcup_{1\le j\le\vartheta} z_j+P$, here each of $z_j$ contains $l$ values such that $l\gg\upsilon$; where $\vartheta,P$ are polynomials. Determination of each $\lambda_{z_j}$ is realized due to permutation with previously defined $\lambda_{s^*+1\le i\le s^*+\upsilon}$ (we take $\upsilon$ \ldots\ evenly spaced representatives from each $z_j$ including endpoints) with total computational complexity of $O(n^{k'''})$. Thus we have leveled the surplus of $(N-M)$ instances of the Boolean satisfiability problem, so P\,=\,NP.''
+
+\subsection{The implementation model on a DTM (Section 5.1 of the paper)}
+
+\paperline{1307--1322}: ``Using the DTM with polynomial memory, we cannot print on tape all instances of the Boolean satisfiability problem in polynomial time, but we can numerate them on tape in polynomial time. We will operate with polynomially bounded collection of computable values $g_1,\ldots,g_M,\ldots,g_{s^*+\upsilon+1}$ (including $(\vartheta\cdot\upsilon+P)$ representatives from each $z_j$ (see 2c)) such that the relevant collection of computable `weights' \ldots\ is given (see 2nd stage).'' And \paperline{1319}: ``Using theorem~5.1, we cannot make a permutation between two numerated instances, which are not the representatives from each $z_j$, because a priori we take into account their unique `weights' (see 2nd stage).''
+
+\section{Findings}
+\label{sec:findings}
+
+Severity follows the issue log of the repository: \emph{fatal} breaks Theorem~5.1 on its own; \emph{major} breaks a supporting statement or leaves a step unjustified; \emph{minor} is fixable and does not affect the conclusion; \emph{unclear} means the claim cannot be evaluated as written.
+
+\subsection{Fatal: no algorithm is specified (\issue{001})}
+
+Theorem~5.1 names neither an input nor an output, and Section~5.1 of the paper describes no step that takes a formula and returns its answer. What it describes is a collection of real numbers $g_1,\ldots,g_{s^*+\upsilon+1}$ kept on tape together with a sorted list of weights. Its second paragraph invokes Theorem~5.1 in order to describe the implementation of Theorem~5.1.
+
+$\mathrm{P}=\mathrm{NP}$ requires a decision procedure for satisfiability with a polynomial time bound. Without input, output and steps, there is nothing whose running time could be bounded.
+
+\subsection{Fatal: the system $\mathcal U$ never reads an instance (\issue{002})}
+
+The unknowns are the answers $\lambda_i$ for $i>s^*=M$, and $\mathcal U$ is announced as the system that determines them. Its content: (1)--(3) relate sums of the $\lambda_i$ and of their $r$-th powers through the unspecified $\kappa$, $\upsilon$ and $\varpi$; (4) is a kinetic equation for hard spheres; (5) fixes a block of $\upsilon$ answers to the undecided value $0.5/0.5$; (6) sets every remaining answer to ``approximately zero''. Neither the instances $S_i$, nor their weights $\chi_i$, nor the basis functions $L_i$ occur in $\mathcal U$. A system that never reads a formula cannot output that formula's satisfiability. Equation~(6) also concedes, for the tail of instances, that the two possible answers ``are indistinguishable'' \paperline{1281}: the encoding $\lambda_i\in\{g_i,g_{i+1}\}$ with $g_i\to 0$ erases the distinction it was meant to carry.
+
+This is the step that is supposed to produce the $N-M$ unchecked answers. It produces nothing that depends on the instances.
+
+\subsection{Fatal: the complexity count assumes the conclusion (\issue{003})}
+
+Item~1 charges $O(n^k)$ for ``checking the first $M$ instances''. Checking one satisfiability instance of length $n$ on a DTM is the quantity the theorem is about, and the paper gives no method for it. Read as the DTM check of the preamble, item~1 assumes the conclusion for the first $M$ instances. Read instead as ``the $M$ instances of smallest encoding are trivially small'', their answers carry no information about the others (Section~\ref{sec:weightorder}). Items 2a--2c attach exponents $k',k'',k'''$ to steps that are never described as computations; $\vartheta$ and $P$ ``are polynomials'' by declaration. In item~2c the tail of $N-M-\upsilon$ instances is cut into $\vartheta$ blocks of $l\gg\upsilon$ instances and every block is ``determined \ldots\ due to permutation'' of $\upsilon$ representatives; no sentence explains why the answer of a non-representative equals that of any representative. Since the number $N$ of instances of length $n$ is exponential in $n$ while $\vartheta$ and $\upsilon$ are polynomial, almost every instance is a non-representative. No polynomial is derived anywhere in the proof.
+
+\subsection{Major: Claim 5.3 and Corollary 5.4 are vacuous and unproved (\issue{004})}
+
+The factor $\varpi$ is introduced as whatever makes \eqref{eq:claim52} hold, and $\kappa$ is a free constant. Claim~5.3 therefore has the form ``a positive number equals an unspecified constant times an unspecified function times a number'', which any positive left-hand side satisfies. ``Easily shown'' and ``by induction'' are the whole proof; Corollary~5.4's proof is omitted. Two hypotheses of \cite{stepanets} are also not met: result (i) concerns infinite sequences and is applied to the finite sequence $\lambda_1,\ldots,\lambda_N$; and the identification $L_i(x,y)=m_i^r$ \paperline{1134} requires $m_i\ge 0$ for $0<r<1$, whereas serendipity basis functions take negative values inside the square (the paper's own $K_2=-\frac14(1+x)(1-y)xy$ is negative for $x,y>0$). Lemma~5.5 relaxes the sign condition, but only for $r=1$.
+
+\subsection{Major: the instance enters only as a number, and the weight order carries no information (\issue{005})}
+
+The only property of a formula the proof ever uses is its numeric value in an unstated encoding; its clauses are never read. The existence and uniqueness of a nodal basis with $N$ prescribed loads is asserted in the second stage; the construction offered in Section~5.2 of the paper \paperline{1333--1340}, $L_i=\xi L_i^1+(1-\xi)L_i^2$ with one scalar $\xi$, cannot satisfy $N$ constraints. Footnote~13 claims that the answer $\lambda_i$ determines the instance $S_i$, the reverse of what a decision procedure needs, and gives no mechanism in either direction. Finally, the ``ideology'' presumes that satisfiable instances occupy a position in the weight order that can be found after checking a prefix. The experiment of Section~\ref{sec:weightorder} shows that satisfiable and unsatisfiable formulas interleave along the whole order.
+
+\subsection{Major: the BBGKY hierarchy is attached by one sentence (\issue{006})}
+
+Formulas (5.1)--(5.4) of the paper are copied from \cite{gerasimenko} with the particle number renamed $s^*$. No map from nodal values or instances to particle positions and momenta is defined, no initial datum $F(0)$ is specified, no solution is computed, and the only sentence that follows from the block is ``the number of $r$ is polynomially bounded'' \paperline{1280}, which is not derived.
+
+\subsection{Minor and unclear items}
+
+\begin{itemize}
+\item \issue{007} (minor). ``$s^*=P(n)$, here $P(n)$ is a polynomial'' \paperline{1119} is the paper's addition to \cite{stepanets}, where $s^*$ is the index realising a supremum that depends on the sequence and on $n$. No bound is derived; and $s^*$ is a position in a sequence, not a running time.
+\item \issue{008} (unclear). The proof of Claim~5.2 for general $N$ (lines 826--1049) introduces functions $Q_i$ and $\gamma_j$ that are never defined, node counts given by cubic expressions in $b=N\bmod 4$ that are not derived, and does not name the family of bases with respect to which invariance is claimed for $N>8$. For $N=8$ the claim is correct (Section~\ref{sec:sfe8}). The claim is not load-bearing: line~1147 replaces it by the identity defining $\varpi$.
+\item \issue{009} (minor). Section~5.2, comment~1 \paperline{1330}: ``theorem~5.1 is not a universal algorithm (specifically, for the TSP).'' A polynomial-time decision procedure for satisfiability yields one for every problem in NP, the decision version of the travelling salesman problem included \cite{cook,karp}. The author therefore does not claim what $\mathrm{P}=\mathrm{NP}$ means in the standard sense.
+\end{itemize}
+
+\section{Experiments}
+
+\subsection{Claim 5.2 for the eight-node element}
+\label{sec:sfe8}
+
+The paper prints a basis $K_1,\ldots,K_8$ for the eight-node serendipity element (page~12, lines 892--905), with corner nodes $1$--$4$ at $(-1,-1),(1,-1),(1,1),(-1,1)$ and mid-side nodes $5$--$8$ at $(0,-1),(1,0),(0,1),(-1,0)$:
+\begin{align*}
+K_1&=\tfrac14(1-x)(1-y)\,xy, & K_5&=\tfrac14(1-x^2)(1-y)^2,\\
+K_2&=-\tfrac14(1+x)(1-y)\,xy, & K_6&=\tfrac14(1-y^2)(1+x)^2,\\
+K_3&=\tfrac14(1+x)(1+y)\,xy, & K_7&=\tfrac14(1-x^2)(1+y)^2,\\
+K_4&=-\tfrac14(1-x)(1+y)\,xy, & K_8&=\tfrac14(1-y^2)(1-x)^2.
+\end{align*}
+The standard serendipity basis \cite{zienkiewicz} is $N_i=\frac14(1+x_ix)(1+y_iy)(x_ix+y_iy-1)$ at the corners and, for example, $N_5=\frac12(1-x^2)(1-y)$ at the mid-sides. With $B(x,y)=(1-x^2)(1-y^2)$ one computes
+\[
+K_1-N_1=\tfrac14(1-x)(1-y)\bigl(xy+x+y+1\bigr)=\tfrac14 B,\qquad
+K_5-N_5=\tfrac14(1-x^2)(1-y)\bigl((1-y)-2\bigr)=-\tfrac14 B,
+\]
+and likewise for the other nodes by symmetry. Hence for nodal values $\lambda_1,\ldots,\lambda_8$,
+\[
+\sum_{i=1}^8\lambda_i K_i-\sum_{i=1}^8\lambda_i N_i=\frac{B}{4}\Bigl(\sum_{i=1}^4\lambda_i-\sum_{i=5}^8\lambda_i\Bigr),
+\]
+which vanishes exactly when the mean of the corner values equals the mean of the mid-side values. That is \eqref{eq:claim52} with $N=8$. The computer-algebra check (module \texttt{pnp\_check.sfe8}) confirms in addition that both bases are nodal and sum to one, that the paper's basis has loads $\frac19$ (corners) and $\frac89$ (mid-sides), all positive, and that the standard basis has corner loads $-\frac13$, which is the ``Zienkiewicz's paradox'' the paper mentions in Section~5.2.
+
+\subsection{Satisfiability along the weight order}
+\label{sec:weightorder}
+
+The ``ideology'' depends on the first $M$ instances in weight order determining the rest, and footnote~17 makes the goal concrete: find ``a position number of $C$'' among the $N-M$ unchecked instances, or conclude that all of them are $\Cbar$. We tested the weakest form of this: after checking the first $M$ instances, do the remaining answers change at most once along the order?
+
+\paragraph{Method.} Fix $n$ variables and the alphabet of all clauses of width 1, 2 or 3 over distinct variables, indexed by width, then variables, then signs. A formula with $m$ clauses is a word of length $m$ over this alphabet; the numeric value of the word, which is the paper's weight up to normalisation, orders the words lexicographically. Every word is decided by brute force over the $2^n$ assignments (module \texttt{pnp\_check.weight\_order}). Clause widths 1--3 are used so that unsatisfiable formulas exist at small sizes; with 3-literal clauses alone, at least eight clauses are needed for unsatisfiability. For the sequence of answers in word order we count the \emph{flips} (positions where the answer differs from its neighbour) and the smallest $M$ such that the answers after position $M$ flip at most once.
+
+\begin{table}[h]
+\centering
+\caption{Satisfiability along the numeric order of formula words. ``Tail readable from $M$'' is the smallest prefix after which the remaining answers change at most once.}
+\label{tab:weightorder}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Variables & Clauses & Instances & Satisfiable & Flips & Tail readable from $M$ \\
+\midrule
+3 & 3 & 17\,576 & 16\,982 & 862 & 17\,034 \ (96.9\,\%)\\
+3 & 4 & 456\,976 & 415\,990 & 48\,948 & 456\,434 \ (99.9\,\%)\\
+4 & 3 & 262\,144 & 260\,344 & 2\,554 & 258\,502 \ (98.6\,\%)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Result.} Table~\ref{tab:weightorder} and Figure~\ref{fig:suffix} show that the number of flips still ahead falls steadily with the fraction of instances checked and reaches zero only at the end of the order. The steeper initial drop in two of the families covers the words whose first letter is a unit clause: unit clauses come first in the alphabet (the first $6/26$ of the words for 3 variables, the first $8/64$ for 4 variables), and unsatisfiable formulas are denser there. After that stretch the flips are spread evenly. No prefix shorter than 96.9--99.9\,\% of all instances makes the tail readable. There is no ``position number of $C$'' to find.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.82\textwidth, height=0.5\textwidth,
+  xlabel={Fraction of instances checked, $M/N$},
+  ylabel={Fraction of answer flips still ahead},
+  xmin=0, xmax=1, ymin=0, ymax=1,
+  xtick={0,0.2,...,1}, ytick={0,0.2,...,1},
+  grid=major, grid style={gridline, thin},
+  axis line style={axisline},
+  tick label style={inkmuted, font=\small},
+  label style={font=\small},
+  legend style={draw=none, fill=none, font=\small, at={(0.97,0.95)}, anchor=north east, cells={anchor=west}},
+  every axis plot/.append style={line width=1pt, mark=none},
+]
+\addplot[series1] table[x=frac, y expr=\thisrow{switches}/862] {data/suffix_switches_3_3.dat};
+\addlegendentry{3 variables, 3 clauses}
+\addplot[series2] table[x=frac, y expr=\thisrow{switches}/48948] {data/suffix_switches_3_4.dat};
+\addlegendentry{3 variables, 4 clauses}
+\addplot[series3] table[x=frac, y expr=\thisrow{switches}/2554] {data/suffix_switches_4_3.dat};
+\addlegendentry{4 variables, 3 clauses}
+\end{axis}
+\end{tikzpicture}
+\caption{Answer flips remaining in the unchecked tail, as a function of the fraction of instances checked in the paper's weight order, for the three exhaustive families of Table~\ref{tab:weightorder}. A method that reads a prefix and infers the rest would need these curves to reach zero early; they reach zero only at the end.}
+\label{fig:suffix}
+\end{figure}
+
+\section{What holds up}
+
+\paragraph{Lemma 5.5.} The appendix states a ``strengthening'' of \cite{stepanets} for real sequences $m$ with $|m_k|\le 1$ and $\sum_k m_k\le 1$, and nonincreasing nonnegative $\alpha$ with $\alpha_k=0$ for $k>N$ (the text says ``$k>s$'', a typo). With
+\[
+E_n(\alpha)=\sup_m\Bigl(\sum_{k=1}^N\alpha_k m_k-\sup_{|\gamma|=n}\sum_{k\in\gamma}\alpha_k m_k\Bigr),
+\]
+the lemma asserts $E_n(\alpha)=\sum_{k=n+1}^N\alpha_k$ for $n<N$, attained by $m^*=(1,\ldots,1,-1,\ldots,-1,0,\ldots)$ with $N$ ones and $N-1$ minus-ones. This is true. For any admissible $m$, choosing $\gamma=\{1,\ldots,n\}$ inside the inner supremum gives
+\[
+E_n(m)\le\sum_{k=1}^N\alpha_k m_k-\sum_{k=1}^n\alpha_k m_k=\sum_{k=n+1}^N\alpha_k m_k\le\sum_{k=n+1}^N\alpha_k,
+\]
+since $\alpha_k\ge 0$ and $m_k\le 1$. The sequence $m^*$ is admissible, its sum being $N-(N-1)=1$, and gives equality because the $n$ largest terms $\alpha_k$ are the first $n$. The paper's page-long rearrangement argument is unnecessary; it does not check that its rearranged sequence keeps $|m_k|\le 1$ for negative entries, but the lemma does not depend on it. Lemma~5.5 is not used in the proof of Theorem~5.1: Claim~5.3 invokes result (i) of \cite{stepanets} with $r=1$.
+
+\paragraph{Claim 5.2 for $N=8$.} Verified in Section~\ref{sec:sfe8} for the two bases the paper names.
+
+\paragraph{The restatement of \cite{stepanets}.} Lines 1052--1118 reproduce the definitions and results (i) and (ii) faithfully; only the appended Note~1 (\issue{007}) is the paper's own.
+
+\section{The role of Sections 2--4}
+\label{sec:role24}
+
+Sections~2--4 define plafales, the category \textsf{Plafales} with its (non-)existence results for initial objects, terminal objects and (co)products, and the notions of geo-space, point, manifold and dynamical system. Within the proof of Theorem~5.1 (lines 622--1306) none of these definitions, claims or corollaries is cited. The single link is the phrase ``labeled geo-plafal'' for the square with $N$ labelled boundary nodes of the first stage. Consequently the review of Sections~2--4, which remains to be done, can change the status of Definitions~2.1--4.16 and Claims~2.2--4.14 in the ledger but cannot repair Theorem~5.1.
+
+\section{Conclusion}
+
+The proof of Theorem~5.1 in \cite{topchyi} does not establish the theorem. Each of the three fatal defects is sufficient on its own: no algorithm is specified; the system $\mathcal U$ that is to produce the unchecked answers never reads an instance, and its last equation erases the distinction between the two answers; and the complexity count charges polynomial time for the very checking that is in question and derives no polynomial for any step. The supporting apparatus (the stabilisation function, Claim~5.3, Corollary~5.4, the BBGKY block) cannot be repaired into a proof without new ideas, because nothing in it depends on the clause structure of a formula. The correct parts of Section~5 (Lemma~5.5, Claim~5.2 for $N=8$, the restatement of \cite{stepanets}) are peripheral to the complexity claim.
+
+Open questions, recorded in the repository for the author or a reader who wishes to defend the paper:
+\begin{enumerate}
+\item What are the input and the output of the algorithm of Theorem~5.1?
+\item Which quantity in the system $\mathcal U$ depends on the clause structure of an instance?
+\item By what method are the first $M$ instances ``checked'' within $O(n^k)$?
+\item For $N>8$, invariance with respect to which family of bases does Claim~5.2 assert, and what are the functions $Q_i$?
+\item How is a nodal basis with $N$ prescribed loads constructed, and why is it unique?
+\end{enumerate}
+
+\appendix
+
+\section{Issue index}
+
+\begin{center}
+\begin{tabular}{@{}ll>{\raggedright\arraybackslash}p{4.6cm}>{\raggedright\arraybackslash}p{6.2cm}@{}}
+\toprule
+ID & Severity & Ledger row (page / line) & Summary \\
+\midrule
+\issue{001} & fatal & Theorem 5.1, S5-DTM (10/633; 17/1307) & No algorithm is specified: no input, no output, no steps.\\
+\issue{002} & fatal & S5-IDEO (15/1176) & The system $\mathcal U$ that is to determine the unknown answers does not contain the instances.\\
+\issue{003} & fatal & S5-COMPLX (16/1286) & Complexity count assumes the conclusion and derives no polynomial.\\
+\issue{004} & major & Claim 5.3, Cor.~5.4 (15/1152, 1164) & Vacuous statements with unspecified constants; proofs ``easily shown'' and ``omitted''.\\
+\issue{005} & major & S5-CT, 2nd stage (11/711) & Instance enters only as a number; basis with prescribed loads asserted; weight order carries no information.\\
+\issue{006} & major & S5-IDEO (15--16/1194, 1275) & BBGKY hierarchy attached by one sentence, nothing derived from it.\\
+\issue{007} & minor & Claim 5.3 (14/1119) & ``$s^*=P(n)$, a polynomial'' asserted without derivation.\\
+\issue{008} & unclear & Claim 5.2 (11--13/789--1049) & General-$N$ proof not followable; holds for $N=8$.\\
+\issue{009} & minor & Theorem 5.1 (17/1330) & Author denies the standard consequence of $\mathrm P=\mathrm{NP}$ (TSP).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Ledger statuses for Section 5}
+
+Status values: \emph{ok} (statement and proof accepted), \emph{unclear} (cannot be evaluated as written), \emph{gap} (proof step missing or unjustified), \emph{error} (statement or proof is wrong).
+
+\begin{center}
+\begin{tabular}{@{}ll>{\raggedright\arraybackslash}p{9.1cm}@{}}
+\toprule
+Row & Status & Note \\
+\midrule
+Theorem 5.1 & error & Proof does not establish the statement (\issue{001}, 002, 003). The statement itself remains undecided.\\
+Claim 5.2 & unclear & Holds for $N=8$; general-$N$ proof not followable (\issue{008}); not load-bearing.\\
+Claim 5.3 & gap & $\kappa$, $\varpi$ unspecified; proof ``easily shown \ldots\ by induction'' (\issue{004}, 007).\\
+Corollary 5.4 & gap & ``The proof is omitted'' (\issue{004}).\\
+Lemma 5.5 & ok & True; two-line proof above; typo ``$k>s$''; not used in Theorem~5.1.\\
+S5-CT (template) & unclear & Square with $N$ boundary nodes; $H_i$ mixture never governed; instance enters only as a number (\issue{005}).\\
+S5-IDEO (ideology, $\mathcal U$) & error & $\mathcal U$ contains no instance (\issue{002}); BBGKY block inert (\issue{006}); weight order uninformative (\issue{005}).\\
+S5-COMPLX (complexity) & error & Item~1 assumes the conclusion; exponents declared, none derived (\issue{003}).\\
+S5-DTM (implementation) & error & No input, output or step; invokes Theorem~5.1 inside its own implementation (\issue{001}).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Reproduction}
+
+The repository \texttt{github.com/tarstars/pnp} contains the paper, the text extraction, the ledger, the issue log, the section notes and the experiments. With \texttt{uv} installed:
+\begin{verbatim}
+uv sync
+uv run pytest                  # 12 tests, including both experiments
+uv run python -c "from pnp_check.weight_order import summary; \
+                  print(summary(3, 4))"
+scripts/build_report.sh        # this document, via latexmk
+\end{verbatim}
+\begin{sloppypar}
+Line numbers in this document refer to the text extraction \texttt{paper/paper.txt}, produced by \texttt{scripts/extract\_paper.sh}; page numbers refer to the PDF.
+\end{sloppypar}
+
+\begin{thebibliography}{9}
+\bibitem{topchyi} D.~Topchyi, \emph{The theory of plafales: P vs NP problem solution}, 11~September 2026, 20~pp. (the paper under review).
+\bibitem{stepanets} O.~I.~Stepanets', A.~L.~Shydlich, On one extremal problem for positive series, \emph{Ukrainian Mathematical Journal} 57 (2005), 1968--1976. Reference [26] of the paper.
+\bibitem{gerasimenko} V.~I.~Gerasimenko, V.~O.~Shtyk, The Bogolyubov principle of the decay of correlations for an infinite three-dimensional systems, \emph{Reports of the National Academy of Sciences of Ukraine} 3 (2008), 7--13. Reference [27] of the paper.
+\bibitem{cook} S.~A.~Cook, The complexity of theorem-proving procedures, \emph{Proc.\ 3rd ACM STOC} (1971), 151--158.
+\bibitem{karp} R.~M.~Karp, Reducibility among combinatorial problems, in \emph{Complexity of Computer Computations}, Plenum (1972), 85--103.
+\bibitem{zienkiewicz} O.~C.~Zienkiewicz, \emph{The Finite Element Method in Engineering Science}, McGraw-Hill (1971), Ch.~7 (serendipity shape functions).
+\end{thebibliography}
+
+\end{document}
