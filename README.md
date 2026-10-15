@@ -20,6 +20,7 @@ Open until Sections 2-4 are reviewed, but Section 5 (the whole proof of Theorem 
 | `review/sections/` | Section-by-section working notes. |
 | `report/` | The review as an article: `review.tex` and the compiled `review.pdf` (rebuild with `scripts/build_report.sh`). |
 | `refs/bibliography.md` | The 28 references, their role in the argument, and whether we obtained them. |
+| [Related literature](refs/README.md) | Seven relevant publication/version records, licensed PDFs, BibTeX, source and license links, retrieval limits, and reproducible PDF validation. |
 | `experiments/` | Computational checks of concrete constructions from the paper. |
 | `src/pnp_check/`, `tests/` | Python package and tests backing the experiments. |
 | `docs/superpowers/specs/` | Design notes for this repository. |
