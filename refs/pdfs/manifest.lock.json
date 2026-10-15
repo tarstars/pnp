@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "id": "topchyi2016serendipity",
+      "path": "refs/pdfs/topchyi_2016_serendipity_review_en.pdf",
+      "source_url": "https://works.vntu.edu.ua/index.php/works/article/download/474/476",
+      "resolved_url": "https://works.vntu.edu.ua/index.php/works/article/download/474/476",
+      "sha256": "8cc21eccd7de731a0b105de99df67c17ffd305f7912d87aab76f718631a4b6c9",
+      "bytes": 120053,
+      "pages": 7,
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "gerasimenko2023colliding",
+      "path": "refs/pdfs/gerasimenko_gapyak_2023_colliding_particles_arxiv_v1.pdf",
+      "source_url": "https://arxiv.org/pdf/2308.04143v1",
+      "resolved_url": "https://arxiv.org/pdf/2308.04143v1",
+      "sha256": "4049c2ffd2b6593cb22be11585843c6a2b731f1b39897e5ba3acc701da996d0b",
+      "bytes": 679538,
+      "pages": 67,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "bournez2016polynomial",
+      "path": "refs/pdfs/bournez_graca_pouly_2016_polynomial_odes_icalp.pdf",
+      "source_url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol055-icalp2016/LIPIcs.ICALP.2016.109/LIPIcs.ICALP.2016.109.pdf",
+      "resolved_url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol055-icalp2016/LIPIcs.ICALP.2016.109/LIPIcs.ICALP.2016.109.pdf",
+      "sha256": "139f3f964c4b766498763ca9947349ca9c8c9b830a1c2091895a384627c1d192",
+      "bytes": 531241,
+      "pages": 15,
+      "license": "CC-BY-3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/"
+    }
+  ]
+}
