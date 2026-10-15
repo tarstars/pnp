@@ -9,7 +9,7 @@ One entry per problem found. Severity: `fatal` (breaks Theorem 5.1), `major` (br
 | ISSUE-001 | fatal | Theorem 5.1, S5-DTM | 10 / 633; 17 / 1307 | No algorithm is specified: no input, no output, no steps | confirmed |
 | ISSUE-002 | fatal | S5-IDEO | 15 / 1176 | The system U that is to determine the unknown answers does not contain the instances | confirmed |
 | ISSUE-003 | fatal | S5-COMPLX | 16 / 1286 | Complexity count assumes the conclusion and derives no polynomial | confirmed |
-| ISSUE-004 | major | Claim 5.3, Corollary 5.4 | 15 / 1152, 1164 | Vacuous statements with unspecified constants; proofs "easily shown" and "omitted" | confirmed |
+| ISSUE-004 | major | Claim 5.3, Corollary 5.4 | 15 / 1152, 1164 | Claim 5.3 vacuous with unspecified constants; Corollary 5.4 false as a general identity (exact counterexample) | confirmed |
 | ISSUE-005 | major | S5-CT (2nd stage) | 11 / 711 | Instance enters only as a number; basis with prescribed loads asserted; weight order carries no information | confirmed |
 | ISSUE-006 | major | S5-IDEO | 15-16 / 1194, 1275 | BBGKY hierarchy attached by one sentence, nothing derived from it | confirmed |
 | ISSUE-007 | minor | Claim 5.3 | 14 / 1119 | "s* = P(n), a polynomial" asserted without derivation | confirmed |
@@ -46,14 +46,14 @@ One entry per problem found. Severity: `fatal` (breaks Theorem 5.1), `major` (br
 - **Evidence:** lines 1286-1303; page 16 image.
 - **Status:** confirmed
 
-## ISSUE-004: Claim 5.3 and Corollary 5.4 are vacuous and unproved
+## ISSUE-004: Claim 5.3 is vacuous and Corollary 5.4 is false as a general identity
 
 - **Severity:** major
-- **Where:** Claim 5.3 (page 15, line 1152), Corollary 5.4 (line 1164), the "stabilization function" (line 1149)
-- **What the paper says:** "We can assume without loss of generality that (sum_{i=1}^4 lambda_i / 4) * w(N,t) = sum_{i=5}^N lambda_i / (N - 4), where w(N,t) is a stabilization function." Claim 5.3: the barycentre value "equals kappa * w(N,t) * E_n(lambda(t), 1), here kappa = const". Proof: "It is easily shown that ... by induction, we obtain the statement." Corollary 5.4: "The proof is omitted."
-- **What is wrong or missing:** w is defined by the very identity it is then used in; kappa is a free constant. "A number equals kappa times w times a number" holds for any positive left-hand side. No proof is given. In addition, (i) of [26] requires an infinite nonincreasing sequence with limit 0 and is applied to the finite sequence lambda_1..lambda_N; and at line 1134 the functions L_i(x,y) are identified with the numbers m_i^r of [26], which requires m_i >= 0 while serendipity basis functions take negative values inside the square.
-- **Why it matters for Theorem 5.1:** Claim 5.3 and Corollary 5.4 are the stated source of equations (1)-(3) of U.
-- **Evidence:** lines 1134-1137, 1147-1172; page 15 image.
+- **Where:** Claim 5.3 (page 15, line 1152), Corollary 5.4 (line 1164), the "stabilization function" (line 1149), equation (2) of U (line 1182)
+- **What the paper says:** "We can assume without loss of generality that (sum_{i=1}^4 lambda_i / 4) * w(N,t) = sum_{i=5}^N lambda_i / (N - 4), where w(N,t) is a stabilization function." Claim 5.3: the barycentre value "equals kappa * w(N,t) * E_n(lambda(t), 1), here kappa = const". Proof: "It is easily shown that ... by induction, we obtain the statement." Corollary 5.4: with the same w, (sum_{i=1}^4 lambda_i^r / 4) * w^r = sum_{i=5}^N lambda_i^r / (N - 4) for 0 < r < 1; "The proof is omitted."
+- **What is wrong or missing:** (a) w is defined by the very identity it is then used in and kappa is a free constant, so Claim 5.3 reads "a number equals kappa times w times a number", which any positive left-hand side satisfies; no proof is given. (b) Corollary 5.4 is false in general. Write A_r = (1/4) sum_{i=1}^4 lambda_i^r and B_r = (1/(N-4)) sum_{i=5}^N lambda_i^r, so w = B_1/A_1 and the corollary asserts A_r w^r = B_r. Counterexample (from the note `paper/topchyi_review.pdf`, Section 3; verified exactly in experiment `corollary_5_4`): N = 8, r = 1/2, lambda = (64, 49, 36, 25, 16, 9, 4, 1). Then A_1 = 87/2, B_1 = 15/2, w = 5/29, A_{1/2} = 13/2, B_{1/2} = 5/2 and A_{1/2}^2 w - B_{1/2}^2 = 169/4 * 5/29 - 25/4 = 30/29, not 0. The sequence is positive and strictly decreasing, and appending 2^{-k} gives a tail to 0 with sum lambda_i^{1/(1-r)} finite, so every condition the paper states at lines 1134-1136 is met. Since w = B_1/A_1, the corollary holds exactly when A_r / A_1^r = B_r / B_1^r, an extra condition the paper never imposes. (c) Two hypotheses of [26] are not met: (i) concerns infinite sequences and is applied to the finite sequence lambda_1..lambda_N; and at line 1134 the functions L_i(x,y) are identified with the numbers m_i^r of [26], which requires m_i >= 0 while serendipity basis functions take negative values inside the square.
+- **Why it matters for Theorem 5.1:** Claim 5.3 and Corollary 5.4 are the stated source of equations (1)-(3) of U; equation (2) is therefore false as written.
+- **Evidence:** lines 1134-1137, 1147-1172, 1182; page 15 image; `src/pnp_check/corollary_5_4.py`, `tests/test_corollary_5_4.py`; `paper/topchyi_review.pdf` (3-page note prepared with ChatGPT, 15 October 2026).
 - **Status:** confirmed
 
 ## ISSUE-005: The instance enters the proof only as a number, and the weight order carries no information

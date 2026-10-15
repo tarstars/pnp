@@ -65,7 +65,7 @@ Total: 41 statements Definition 27, Claim 10, Theorem 1, Lemma 1, Corollary 2.
 | Theorem 5.1 | 10 | 633 | Based on the theory of plafales, there exists an algorithm that allows to identify all instances of the Boo... | error | Proof does not establish the statement; no input/output/steps (ISSUE-001), U reads no instance (ISSUE-002), no polynomial derived (ISSUE-003). Statement itself undecided. |
 | Claim 5.2 | 11 | 789 | In general, for SFE on N vertices the condition of invariant of the field function (stability of the FF w.r... | unclear | Holds for N = 8 (experiment sfe8). General-N proof not followable (ISSUE-008). Not load-bearing: replaced by the factor w at line 1147. |
 | Claim 5.3 | 15 | 1152 | The value of the field function at the barycentre18 N equals κ · $(N, t) · En (λ(t), 1), here κ = const, se... | gap | kappa and w unspecified; proof is 'easily shown ... by induction' (ISSUE-004, ISSUE-007). |
-| Corollary 5.4 | 15 | 1164 | We get $(N, T ∗ ) = 4·N ·κ·E (λ(T ∗ ),1)−(N i=1 i −4)· 4 | gap | 'The proof is omitted' (ISSUE-004). |
+| Corollary 5.4 | 15 | 1164 | We get $(N, T ∗ ) = 4·N ·κ·E (λ(T ∗ ),1)−(N i=1 i −4)· 4 | error | 'The proof is omitted'; false as a general identity, exact counterexample N = 8, r = 1/2 (experiment corollary_5_4, ISSUE-004). |
 | Lemma 5.5 | 18 | 1382 | Let α ∈ AN , N ∈ N. Then for any n = 0, 1, . . . , n < N N X | ok | True; two-line direct proof in section notes. Typo 'k > s' for 'k > N'. Not used in the proof of Theorem 5.1. |
 
 ## Unnumbered load-bearing steps (Section 5)

@@ -12,7 +12,7 @@ Open until Sections 2-4 are reviewed, but Section 5 (the whole proof of Theorem 
 
 | Path | What it holds |
 |---|---|
-| `paper/` | The PDF and its text extraction `paper.txt` (regenerate with `scripts/extract_paper.sh`). Notes cite `paper.txt` by line number. |
+| `paper/` | The PDF and its text extraction `paper.txt` (regenerate with `scripts/extract_paper.sh`). Notes cite `paper.txt` by line number. Also `topchyi_review.pdf`, an independent 3-page note prepared with ChatGPT (15 October 2026) whose counterexample to Corollary 5.4 is folded into ISSUE-004. |
 | `review/00_summary.md` | What the paper claims and how the proof is organised. Start here. |
 | `review/01_claims_ledger.md` | Every numbered statement (41) plus the unnumbered load-bearing steps of Section 5, each with a status. |
 | `review/02_issues.md` | Numbered log of problems found, with severity and location. |

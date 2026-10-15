@@ -33,7 +33,7 @@
 \maketitle
 
 \begin{abstract}
-The paper under review claims, as Theorem~5.1, that ``there exists an algorithm that allows to identify all instances of the Boolean satisfiability problem in polynomial time'', and concludes $\mathrm{P}=\mathrm{NP}$. The proof occupies Section~5 of the paper. We examined every numbered statement and every unnumbered load-bearing step of that section, quoting the text by page and line, and ran two computational experiments. The proof does not establish the theorem. Three independent defects each suffice: no algorithm is specified (no input, no output, no step); the system of equations that is supposed to produce the answers of the unchecked instances contains neither the instances nor anything derived from them; and the complexity count charges polynomial time for ``checking'' satisfiability instances, which is the question itself, and derives no polynomial for any step. Sections~2--4 of the paper, which build a category-theoretic apparatus, are not used by the proof beyond a single phrase. What does hold: Lemma~5.5 is true, with a two-line proof; the paper's Claim~5.2 is correct for the eight-node serendipity element, which we verified symbolically; and the restatement of a result of Stepanets' and Shydlich is faithful.
+The paper under review claims, as Theorem~5.1, that ``there exists an algorithm that allows to identify all instances of the Boolean satisfiability problem in polynomial time'', and concludes $\mathrm{P}=\mathrm{NP}$. The proof occupies Section~5 of the paper. We examined every numbered statement and every unnumbered load-bearing step of that section, quoting the text by page and line, and ran two computational experiments. The proof does not establish the theorem. Three independent defects each suffice: no algorithm is specified (no input, no output, no step); the system of equations that is supposed to produce the answers of the unchecked instances contains neither the instances nor anything derived from them; and the complexity count charges polynomial time for ``checking'' satisfiability instances, which is the question itself, and derives no polynomial for any step. In addition, Corollary~5.4, whose proof the paper omits, is false as a general identity: an exact counterexample, contributed by an independent note and verified here, shows that the paper's definition of its ``stabilization function'' does not imply the power-mean identity used as equation~(2) of its system $\mathcal U$. Sections~2--4 of the paper, which build a category-theoretic apparatus, are not used by the proof beyond a single phrase. What does hold: Lemma~5.5 is true, with a two-line proof; the paper's Claim~5.2 is correct for the eight-node serendipity element, which we verified symbolically; and the restatement of a result of Stepanets' and Shydlich is faithful.
 \end{abstract}
 
 \section{Introduction}
@@ -42,7 +42,7 @@ The paper \cite{topchyi} is dated 11~September 2026, has 20~pages, five sections
 
 \paragraph{Scope.} This review covers Section~5 completely. Sections~2--4 are discussed only in so far as the proof uses them (Section~\ref{sec:role24}).
 
-\paragraph{Method.} The review repository keeps the paper, a fixed text extraction of it, a ledger of all 41 numbered statements plus four unnumbered load-bearing steps, an issue log and the experiments. Every claim about the paper below is anchored to a page of the PDF and a line of the text extraction (\texttt{paper/paper.txt}, produced by \texttt{pdftotext -layout}); formulas that the extraction garbles were read from rendered page images. Each finding is first stated in the paper's words, then as a defect, then with its consequence for Theorem~5.1. Open points are recorded as questions, not as verdicts.
+\paragraph{Method.} The review repository keeps the paper, a fixed text extraction of it, a ledger of all 41 numbered statements plus four unnumbered load-bearing steps, an issue log and the experiments. A second, independent three-page note on the same paper \cite{note} reached the same verdict and contributed the counterexample of Section~\ref{sec:cor54}; it is kept in the repository and credited where used. Every claim about the paper below is anchored to a page of the PDF and a line of the text extraction (\texttt{paper/paper.txt}, produced by \texttt{pdftotext -layout}); formulas that the extraction garbles were read from rendered page images. Each finding is first stated in the paper's words, then as a defect, then with its consequence for Theorem~5.1. Open points are recorded as questions, not as verdicts.
 
 \paragraph{Notation.} $C$ denotes an instance whose answer is ``Yes'' (satisfiable) and $\Cbar$ one whose answer is ``No'', following the paper's preamble \paperline{627--629}. SFE stands for serendipity finite element, a finite element without interior nodes. DTM is a deterministic Turing machine. CTSA is the paper's name for the ``constructive theory of serendipity approximations'' of Khomchenko's school.
 
@@ -145,9 +145,9 @@ This is the step that is supposed to produce the $N-M$ unchecked answers. It pro
 
 Item~1 charges $O(n^k)$ for ``checking the first $M$ instances''. Checking one satisfiability instance of length $n$ on a DTM is the quantity the theorem is about, and the paper gives no method for it. Read as the DTM check of the preamble, item~1 assumes the conclusion for the first $M$ instances. Read instead as ``the $M$ instances of smallest encoding are trivially small'', their answers carry no information about the others (Section~\ref{sec:weightorder}). Items 2a--2c attach exponents $k',k'',k'''$ to steps that are never described as computations; $\vartheta$ and $P$ ``are polynomials'' by declaration. In item~2c the tail of $N-M-\upsilon$ instances is cut into $\vartheta$ blocks of $l\gg\upsilon$ instances and every block is ``determined \ldots\ due to permutation'' of $\upsilon$ representatives; no sentence explains why the answer of a non-representative equals that of any representative. Since the number $N$ of instances of length $n$ is exponential in $n$ while $\vartheta$ and $\upsilon$ are polynomial, almost every instance is a non-representative. No polynomial is derived anywhere in the proof.
 
-\subsection{Major: Claim 5.3 and Corollary 5.4 are vacuous and unproved (\issue{004})}
+\subsection{Major: Claim 5.3 is vacuous and Corollary 5.4 is false (\issue{004})}
 
-The factor $\varpi$ is introduced as whatever makes \eqref{eq:claim52} hold, and $\kappa$ is a free constant. Claim~5.3 therefore has the form ``a positive number equals an unspecified constant times an unspecified function times a number'', which any positive left-hand side satisfies. ``Easily shown'' and ``by induction'' are the whole proof; Corollary~5.4's proof is omitted. Two hypotheses of \cite{stepanets} are also not met: result (i) concerns infinite sequences and is applied to the finite sequence $\lambda_1,\ldots,\lambda_N$; and the identification $L_i(x,y)=m_i^r$ \paperline{1134} requires $m_i\ge 0$ for $0<r<1$, whereas serendipity basis functions take negative values inside the square (the paper's own $K_2=-\frac14(1+x)(1-y)xy$ is negative for $x,y>0$). Lemma~5.5 relaxes the sign condition, but only for $r=1$.
+The factor $\varpi$ is introduced as whatever makes \eqref{eq:claim52} hold, and $\kappa$ is a free constant. Claim~5.3 therefore has the form ``a positive number equals an unspecified constant times an unspecified function times a number'', which any positive left-hand side satisfies. ``Easily shown'' and ``by induction'' are the whole proof. Corollary~5.4's proof is omitted, and its $r$-power identity, used verbatim as equation~(2) of $\mathcal U$, is false in general: Section~\ref{sec:cor54} gives an exact counterexample. Two hypotheses of \cite{stepanets} are also not met: result (i) concerns infinite sequences and is applied to the finite sequence $\lambda_1,\ldots,\lambda_N$; and the identification $L_i(x,y)=m_i^r$ \paperline{1134} requires $m_i\ge 0$ for $0<r<1$, whereas serendipity basis functions take negative values inside the square (the paper's own $K_2=-\frac14(1+x)(1-y)xy$ is negative for $x,y>0$). Lemma~5.5 relaxes the sign condition, but only for $r=1$.
 
 \subsection{Major: the instance enters only as a number, and the weight order carries no information (\issue{005})}
 
@@ -187,6 +187,27 @@ and likewise for the other nodes by symmetry. Hence for nodal values $\lambda_1,
 \sum_{i=1}^8\lambda_i K_i-\sum_{i=1}^8\lambda_i N_i=\frac{B}{4}\Bigl(\sum_{i=1}^4\lambda_i-\sum_{i=5}^8\lambda_i\Bigr),
 \]
 which vanishes exactly when the mean of the corner values equals the mean of the mid-side values. That is \eqref{eq:claim52} with $N=8$. The computer-algebra check (module \texttt{pnp\_check.sfe8}) confirms in addition that both bases are nodal and sum to one, that the paper's basis has loads $\frac19$ (corners) and $\frac89$ (mid-sides), all positive, and that the standard basis has corner loads $-\frac13$, which is the ``Zienkiewicz's paradox'' the paper mentions in Section~5.2.
+
+\subsection{Corollary 5.4: an exact counterexample}
+\label{sec:cor54}
+
+For $N>4$ and $r>0$ write
+\[
+A_r=\frac14\sum_{i=1}^4\lambda_i^r,\qquad B_r=\frac1{N-4}\sum_{i=5}^N\lambda_i^r .
+\]
+The paper defines $\varpi$ by $A_1\varpi=B_1$ \paperline{1147--1149}, so $\varpi=B_1/A_1$, and Corollary~5.4 asserts, for the same $\varpi$ and $0<r<1$, that $A_r\varpi^r=B_r$; this is equation~(2) of $\mathcal U$. The note \cite{note} observes that the first relation does not imply the second and gives the following instance, which we verified in exact arithmetic (module \texttt{pnp\_check.corollary\_5\_4}). Take $N=8$, $r=\tfrac12$ and
+\[
+(\lambda_1,\ldots,\lambda_8)=(64,49,36,25,16,9,4,1).
+\]
+Then
+\[
+A_1=\tfrac{87}{2},\quad B_1=\tfrac{15}{2},\quad \varpi=\tfrac{5}{29},\quad A_{1/2}=\tfrac{13}{2},\quad B_{1/2}=\tfrac{5}{2},
+\]
+and
+\[
+A_{1/2}^2\,\varpi-B_{1/2}^2=\tfrac{169}{4}\cdot\tfrac{5}{29}-\tfrac{25}{4}=\tfrac{30}{29}\ne 0,
+\]
+so $A_{1/2}\varpi^{1/2}\ne B_{1/2}$. The sequence is positive and strictly decreasing; appending $\lambda_{8+k}=2^{-k}$ gives a tail decreasing to~$0$ with $\sum_i\lambda_i^{1/(1-r)}=\sum_i\lambda_i^2<\infty$, so every condition the paper states at lines 1134--1136 is met. Since $\varpi=B_1/A_1$, the corollary holds exactly when $A_r/A_1^r=B_r/B_1^r$, an additional restriction on the nodal values that the paper never imposes. Replacing $\varpi$ by an $r$-dependent factor would change the system, not justify the displayed identity.
 
 \subsection{Satisfiability along the weight order}
 \label{sec:weightorder}
@@ -256,6 +277,8 @@ since $\alpha_k\ge 0$ and $m_k\le 1$. The sequence $m^*$ is admissible, its sum 
 
 \paragraph{The restatement of \cite{stepanets}.} Lines 1052--1118 reproduce the definitions and results (i) and (ii) faithfully; only the appended Note~1 (\issue{007}) is the paper's own.
 
+\paragraph{Agreement with the independent note.} The note \cite{note} examines the same computational argument and reaches the same three obligations: deriving the answers from the input rather than encoding them, recovering exact answers from a field whose tail the paper calls indistinguishable, and proving a uniform polynomial bound. Its counterexample to Corollary~5.4 is the one addition to this review.
+
 \section{The role of Sections 2--4}
 \label{sec:role24}
 
@@ -263,7 +286,7 @@ Sections~2--4 define plafales, the category \textsf{Plafales} with its (non-)exi
 
 \section{Conclusion}
 
-The proof of Theorem~5.1 in \cite{topchyi} does not establish the theorem. Each of the three fatal defects is sufficient on its own: no algorithm is specified; the system $\mathcal U$ that is to produce the unchecked answers never reads an instance, and its last equation erases the distinction between the two answers; and the complexity count charges polynomial time for the very checking that is in question and derives no polynomial for any step. The supporting apparatus (the stabilisation function, Claim~5.3, Corollary~5.4, the BBGKY block) cannot be repaired into a proof without new ideas, because nothing in it depends on the clause structure of a formula. The correct parts of Section~5 (Lemma~5.5, Claim~5.2 for $N=8$, the restatement of \cite{stepanets}) are peripheral to the complexity claim.
+The proof of Theorem~5.1 in \cite{topchyi} does not establish the theorem. Each of the three fatal defects is sufficient on its own: no algorithm is specified; the system $\mathcal U$ that is to produce the unchecked answers never reads an instance, and its last equation erases the distinction between the two answers; and the complexity count charges polynomial time for the very checking that is in question and derives no polynomial for any step. The supporting apparatus (the stabilisation function, Claim~5.3, Corollary~5.4, the BBGKY block) cannot be repaired into a proof without new ideas, because nothing in it depends on the clause structure of a formula; and Corollary~5.4 is false as stated. The correct parts of Section~5 (Lemma~5.5, Claim~5.2 for $N=8$, the restatement of \cite{stepanets}) are peripheral to the complexity claim.
 
 Open questions, recorded in the repository for the author or a reader who wishes to defend the paper:
 \begin{enumerate}
@@ -286,7 +309,7 @@ ID & Severity & Ledger row (page / line) & Summary \\
 \issue{001} & fatal & Theorem 5.1, S5-DTM (10/633; 17/1307) & No algorithm is specified: no input, no output, no steps.\\
 \issue{002} & fatal & S5-IDEO (15/1176) & The system $\mathcal U$ that is to determine the unknown answers does not contain the instances.\\
 \issue{003} & fatal & S5-COMPLX (16/1286) & Complexity count assumes the conclusion and derives no polynomial.\\
-\issue{004} & major & Claim 5.3, Cor.~5.4 (15/1152, 1164) & Vacuous statements with unspecified constants; proofs ``easily shown'' and ``omitted''.\\
+\issue{004} & major & Claim 5.3, Cor.~5.4 (15/1152, 1164) & Claim~5.3 vacuous with unspecified constants; Corollary~5.4 false as a general identity (exact counterexample).\\
 \issue{005} & major & S5-CT, 2nd stage (11/711) & Instance enters only as a number; basis with prescribed loads asserted; weight order carries no information.\\
 \issue{006} & major & S5-IDEO (15--16/1194, 1275) & BBGKY hierarchy attached by one sentence, nothing derived from it.\\
 \issue{007} & minor & Claim 5.3 (14/1119) & ``$s^*=P(n)$, a polynomial'' asserted without derivation.\\
@@ -308,7 +331,7 @@ Row & Status & Note \\
 Theorem 5.1 & error & Proof does not establish the statement (\issue{001}, 002, 003). The statement itself remains undecided.\\
 Claim 5.2 & unclear & Holds for $N=8$; general-$N$ proof not followable (\issue{008}); not load-bearing.\\
 Claim 5.3 & gap & $\kappa$, $\varpi$ unspecified; proof ``easily shown \ldots\ by induction'' (\issue{004}, 007).\\
-Corollary 5.4 & gap & ``The proof is omitted'' (\issue{004}).\\
+Corollary 5.4 & error & ``The proof is omitted''; false as a general identity, exact counterexample with $N=8$, $r=\tfrac12$ (\issue{004}).\\
 Lemma 5.5 & ok & True; two-line proof above; typo ``$k>s$''; not used in Theorem~5.1.\\
 S5-CT (template) & unclear & Square with $N$ boundary nodes; $H_i$ mixture never governed; instance enters only as a number (\issue{005}).\\
 S5-IDEO (ideology, $\mathcal U$) & error & $\mathcal U$ contains no instance (\issue{002}); BBGKY block inert (\issue{006}); weight order uninformative (\issue{005}).\\
@@ -323,7 +346,7 @@ S5-DTM (implementation) & error & No input, output or step; invokes Theorem~5.1 
 The repository \texttt{github.com/tarstars/pnp} contains the paper, the text extraction, the ledger, the issue log, the section notes and the experiments. With \texttt{uv} installed:
 \begin{verbatim}
 uv sync
-uv run pytest                  # 12 tests, including both experiments
+uv run pytest                  # 16 tests, including all three experiments
 uv run python -c "from pnp_check.weight_order import summary; \
                   print(summary(3, 4))"
 scripts/build_report.sh        # this document, via latexmk
@@ -336,6 +359,7 @@ Line numbers in this document refer to the text extraction \texttt{paper/paper.t
 \bibitem{topchyi} D.~Topchyi, \emph{The theory of plafales: P vs NP problem solution}, 11~September 2026, 20~pp. (the paper under review).
 \bibitem{stepanets} O.~I.~Stepanets', A.~L.~Shydlich, On one extremal problem for positive series, \emph{Ukrainian Mathematical Journal} 57 (2005), 1968--1976. Reference [26] of the paper.
 \bibitem{gerasimenko} V.~I.~Gerasimenko, V.~O.~Shtyk, The Bogolyubov principle of the decay of correlations for an infinite three-dimensional systems, \emph{Reports of the National Academy of Sciences of Ukraine} 3 (2008), 7--13. Reference [27] of the paper.
+\bibitem{note} \emph{A focused review of Topchyi's proposed P\,=\,NP proof}, technical note prepared with ChatGPT, 15~October 2026, 3~pp.; file \texttt{paper/topchyi\_review.pdf} in the review repository.
 \bibitem{cook} S.~A.~Cook, The complexity of theorem-proving procedures, \emph{Proc.\ 3rd ACM STOC} (1971), 151--158.
 \bibitem{karp} R.~M.~Karp, Reducibility among combinatorial problems, in \emph{Complexity of Computer Computations}, Plenum (1972), 85--103.
 \bibitem{zienkiewicz} O.~C.~Zienkiewicz, \emph{The Finite Element Method in Engineering Science}, McGraw-Hill (1971), Ch.~7 (serendipity shape functions).

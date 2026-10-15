@@ -4,6 +4,7 @@
 - **Statements:** Theorem 5.1; Claims 5.2, 5.3; Corollary 5.4; Lemma 5.5; steps S5-CT, S5-IDEO, S5-COMPLX, S5-DTM.
 - **Ledger:** `review/01_claims_ledger.md`, section 5.
 - **Reviewed:** 2026-10-15, from the text extraction and the page images of pages 10-17 (formulas that the extraction garbles were read from the images).
+- **Second source:** `paper/topchyi_review.pdf`, a 3-page note "A focused review of Topchyi's proposed P = NP proof" prepared with ChatGPT (15 October 2026). It reaches the same verdict and contributes the counterexample to Corollary 5.4 recorded below.
 
 Notation used below: C = instance answered "Yes" (satisfiable), C-bar = answered "No"; SFE = serendipity finite element; FF = field function; BF = basis function; DTM = deterministic Turing machine.
 
@@ -73,7 +74,8 @@ For nonincreasing positive alpha with limit 0 and sequences m >= 0 with sum m_k 
 - w(N,t), the "stabilization function", is introduced (line 1149) as whatever makes the equality of Claim 5.2 hold.
 - Claim 5.3 (line 1152): the FF at the barycentre, sum_{i=1}^N lambda_i(t) / N, "equals kappa * w(N,t) * E_n(lambda(t), 1), here kappa = const, see (i)". Proof (lines 1157-1163): "It is easily shown that sum_{i=1}^{s*} lambda_i(T*) / s* = kappa * w(s*, T*) * E_n(lambda(T*), 1), where s* = M. Taking into account [the w identity] ... by induction, we obtain the statement."
   - kappa is unspecified, w is fixed only by one identity, E_n(lambda, 1) is a number computed from lambda. The claim reads "a number equals an unspecified constant times an unspecified function times a number"; any positive left-hand side satisfies it. "Easily shown" and "by induction" are the entire proof. (i) of [26], which needs an infinite sequence, is applied to the finite sequence lambda_1..lambda_N.
-- Corollary 5.4 (line 1164): a formula for w(N, T*) and the r-power analogue with a further constant upsilon; "The proof is omitted."
+- Corollary 5.4 (line 1164): a formula for w(N, T*) and, for the same w, the r-power identity (sum_{i=1}^4 lambda_i^r / 4) * w^r = sum_{i=5}^N lambda_i^r / (N - 4) for 0 < r < 1, with a further constant upsilon; "The proof is omitted." The r-power identity is used verbatim as equation (2) of U.
+- **The r-power identity is false in general.** Write A_r = (1/4) sum_{i=1}^4 lambda_i^r and B_r = (1/(N-4)) sum_{i=5}^N lambda_i^r; the paper's definition gives w = B_1/A_1 and the corollary asserts A_r w^r = B_r. Counterexample, due to the note `paper/topchyi_review.pdf` (Section 3) and verified exactly in experiment `corollary_5_4`: N = 8, r = 1/2, lambda = (64, 49, 36, 25, 16, 9, 4, 1). Then A_1 = 87/2, B_1 = 15/2, w = 5/29, A_{1/2} = 13/2, B_{1/2} = 5/2, and A_{1/2}^2 w - B_{1/2}^2 = 30/29, so A_{1/2} w^{1/2} differs from B_{1/2}. The sequence is positive and strictly decreasing; appending 2^{-k} gives a tail to 0 with sum lambda_i^{1/(1-r)} finite, so the conditions stated at lines 1134-1136 hold. Equivalently the corollary holds exactly when A_r / A_1^r = B_r / B_1^r, which the paper never imposes.
 - See ISSUE-004.
 
 ### The system U (lines 1176-1217, page 15; comments lines 1218-1284, pages 15-16)
@@ -133,5 +135,6 @@ Setting: real sequences m with |m_k| <= 1 and sum m_k <= 1; alpha nonincreasing 
 
 - Experiment `sfe8` (`src/pnp_check/sfe8.py`, `tests/test_sfe8.py`): Claim 5.2 at N = 8, nodal property, partition of unity, loads. Result: the claim holds for the pair (paper's K, Zienkiewicz).
 - Experiment `weight_order` (`src/pnp_check/weight_order.py`, `tests/test_weight_order.py`): satisfiability along the weight order for three exhaustive families. Result: no prefix shorter than 96.9-99.9 % of all instances makes the rest readable.
+- Experiment `corollary_5_4` (`src/pnp_check/corollary_5_4.py`, `tests/test_corollary_5_4.py`): exact-arithmetic check of the counterexample to Corollary 5.4. Result: residual 30/29, the identity fails.
 - Grep of lines 622-1306 for citations of Sections 2-4: none beyond the phrase "labeled geo-plafal".
 - Page images 10-17 consulted for every formula quoted above.

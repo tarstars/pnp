@@ -24,6 +24,8 @@ Sections 2-4 are still `unchecked`, so the verdict stays open by the rule above.
 
 Sections 2-4 are not load-bearing: the proof uses nothing from them beyond the phrase "labeled geo-plafal" for a square with N boundary nodes. Reviewing them can change the status of Definitions 2.1-4.16 but cannot repair Theorem 5.1.
 
+In addition, Corollary 5.4, whose proof is omitted, is false as a general identity: an exact counterexample (N = 8, r = 1/2, from the note `paper/topchyi_review.pdf`, verified in experiment `corollary_5_4`) shows that the paper's definition of the stabilization function does not imply the r-power identity used as equation (2) of U (ISSUE-004).
+
 What is correct in Section 5: Lemma 5.5 (true, with a shorter proof than the paper's), Claim 5.2 for N = 8 (verified symbolically for the two bases the paper names), and the restatement of [26].
 
 ## Issues that determine the verdict
